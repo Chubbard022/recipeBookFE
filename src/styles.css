@@ -2,3 +2,23 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+
+
+/* DASHBOARD */
+
+.dashboardMain{
+  border: 3px solid red;
+  padding: 10%;
+  
+}
+.dashboardLayer{
+  border:2px solid blue;
+  padding: 3%;
+  display: flex;
+}
+
+.DashboardBlock{
+  border: 1px solid black;
+  width:50%;
+}
