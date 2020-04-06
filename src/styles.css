@@ -22,3 +22,14 @@
   border: 1px solid black;
   width:50%;
 }
+
+
+/* HOME */
+.loginBox{
+  border:1px solid black;
+  width: 30%;
+  margin: 0 auto;
+  padding: 1%;
+  border-radius: 2%;
+  box-shadow: 3px 3px 3px rgb(167, 163, 163)
+}
