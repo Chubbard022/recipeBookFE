@@ -4,7 +4,7 @@ import "../../styles.css"
 
 export const UserAccount = () =>{
     return(
-        <div className="DashboardBlock">
+        <div>
            User Account
         </div>
     )

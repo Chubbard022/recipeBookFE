@@ -5,7 +5,7 @@ import "../../styles.css"
 
 export const RecipeMaker = () =>{
     return(
-        <div className="DashboardBlock">
+        <div>
             Make Recipe
         </div>
     )
