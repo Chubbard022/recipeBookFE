@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import "../styles.css"
-
+import {Redirect} from "react-router-dom"
 import {DashBoard} from "./Dashboard/Dashboard"
 
 
@@ -18,6 +18,10 @@ export class Home extends Component{
             password: ""
         }
     }
+    handleSubmit = () =>{
+        //handle axios request to send username and password to backend 
+        this.props.history.push("/Dashboard")
+    }
 
 
     render(){
@@ -29,11 +33,11 @@ export class Home extends Component{
                     </Typography>
                     <body>
                         <form className="loginBox">
-                        <TextField required id="standard-required" label="Username" />
-                        <br/>
-                        <TextField style={{paddingBottom: "10%"}} required id="standard-required" label="Password" />
-                        <br/>
-                        <Button variant="contained" color="primary">Submit</Button>
+                            <TextField required id="standard-required" label="Username" />
+                            <br/>
+                            <TextField style={{paddingBottom: "10%"}} required id="standard-required" label="Password" />
+                            <br/>
+                            <Button variant="contained" color="primary" onClick={this.handleSubmit}>Submit</Button>
                         </form>
                     </body>
                 </header>
