@@ -4,6 +4,6 @@ import "../../styles.css"
 
 export const Social = () =>{
     return(
-        <div className="DashboardBlock"> Social</div>
+        <div> Social</div>
     )
 }
