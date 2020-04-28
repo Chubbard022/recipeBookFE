@@ -2,10 +2,13 @@ import React,{Component} from "react"
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import {connect} from "react-redux"
 
 import {register} from "../../Actions/index"
+import "../../styles.css"
 
-export class Register extends Component{
+
+class Register extends Component{
     constructor(){
         super()
         this.state = {
@@ -15,11 +18,18 @@ export class Register extends Component{
             }
         }    
     }
+    handleChange = (e) =>{
+        this.setState({
+            register:{
+                ...this.state.register,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
     handleSubmit = () =>{
-        register(this.state.register)
+        this.props.register(this.state.register)
         this.props.history.push("/")
     }
-
 
     render(){
         return(
@@ -27,9 +37,20 @@ export class Register extends Component{
                 <header>
                     <body>
                         <form className="loginBox">
-                            <TextField required id="standard-required" label="Username" />
+                            <TextField  
+                                type="text"
+                                label="Username"
+                                name="username"
+                                onChange={this.handleChange}
+                            />
                             <br/>
-                            <TextField style={{paddingBottom: "10%"}} required id="standard-required" label="Password" />
+                            <TextField 
+                                type="password" 
+                                style={{paddingBottom: "10%"}}
+                                label="Password"
+                                name="password"
+                                onChange={this.handleChange}
+                            />
                             <br/>
                             <Button variant="contained" color="primary" onClick={this.handleSubmit}>Submit</Button>
                         </form>
@@ -39,3 +60,12 @@ export class Register extends Component{
         )
     }
 }
+const mapStateToProps = (state)=>({
+    errorMessage: state.error,
+    message: state.message
+})
+
+export default connect(
+    mapStateToProps,
+    {register}
+)(Register)
