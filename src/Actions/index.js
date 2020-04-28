@@ -1,57 +1,68 @@
-import auth from "./auth"
-import { dispatch } from "rxjs/internal/observable/pairs";
-
+import axios from "axios"
 
 export const
-    LOGIN = "LOGIN",
-    REGISTER = "REGISTER",
-    REGISTER_FAILURE = "REGISTER_FAILURE",
-    LOGIN_FAILURE = "LOGIN_FAILURE",
-    LOGOUT = "LOGOUT"
+REGISTER = "REGISTER",
+REGISTER_FAILURE = "REGISTER_FAILURE",
+REGISTER_SUCCESS = "REGISTER_SUCCESS"
+LOGIN = "LOGIN",
+LOGIN_FAILURE = "LOGIN_FAILURE",
+LOGIN_SUCCESS = "LOGIN_SUCCESS",
+LOGOUT = "LOGOUT"
+LOGOUT_FAILURE = "LOGOUT_FAILURE"
+LOGOUT_SUCCESS = "LOGOUT_SUCCESS"
 
-    const URL = ""
+const URL = "http://localhost:6500/api"
 
-    export const register = creds => dispatch =>{
-        auth()
-        .post("URL")
-            .then(res=>{
-                dispatch({
-                    type: REGISTER,
-                    payload: res.data
-                })
-            })
-            .catch(err=>{
-                dispatch({
-                    type: REGISTER_FAILURE,
-                    payload: "ERROR: Failure to successfully register"
-                })
-            })
-    }
-
-    export const login = creds => dispatch =>{
-        auth()
-            .post(`${URL}/login`,creds)
-                .then(res=>{
-                    dispatch({
-                        type: LOGIN,
-                        payload: res.data 
-                    })
-                })
-                .catch(err=>{
-                    dispatch({
-                        type: LOGIN_FAILURE,
-                        payload: "ERROR: Failure to successfully login"
-                    })
-                })
-    }
-
-    export const logout = () => dispatch =>{
-        localStorage.clear()
-        // make sure logging in correctly
+export const register = creds => dispatch =>{
+    dispatch({type: REGISTER})
+    axios
+    .post(`${URL}/register`,creds)
         .then(res=>{
             dispatch({
-                type: LOGOUT,
-                payload: "Successfully logged out"
+                type: REGISTER_SUCCESS,
+                payload: res.data
             })
         })
-    }
+        .catch(err=>{
+            dispatch({
+                type: REGISTER_FAILURE,
+                payload: "ERROR: Failure to successfully register"
+            })
+        })
+}
+
+export const login = creds => dispatch =>{
+    dispatch({type: LOGIN})
+    axios
+    .post(`${URL}/login`,creds)
+    .then(res=>{
+        localStorage.setItem("jwt", res.data.token)
+            dispatch({
+                type: LOGIN_SUCCESS,
+                payload: res.data 
+            })
+        })
+        .catch(err=>{
+            dispatch({
+                type: LOGIN_FAILURE,
+                payload: "ERROR: Failure to successfully login"
+            })
+        })
+}
+
+export const logout = () => dispatch =>{
+    dispatch({type:LOGOUT})
+    localStorage.clear()
+    .then(res=>{
+        dispatch({
+            type: LOGOUT_SUCCESS,
+            payload: "Successfully logged out"
+        })
+    })
+    .catch(err=>{
+        dispatch({
+            type: LOGOUT_FAILURE,
+            payload: "ERROR: Couldn't logout successfully"
+        })
+    })
+}
