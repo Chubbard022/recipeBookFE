@@ -2,12 +2,6 @@ import React from "react"
 import { BrowserRouter as Router, Route,Link} from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 
-
-//imports
-import {Inspiration} from "./Inspiration.js"
-import {RecipeMaker} from "./RecipeMaker.js"
-import {Social} from "./Social.js"
-import {UserAccount} from "./UserAccount.js"
 import "../../styles.css"
 
 
