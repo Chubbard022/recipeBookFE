@@ -1,12 +1,13 @@
 import React, {Component} from "react"
+import {connect} from "react-redux"
+
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import {connect} from "react-redux"
+
 
 import {login} from "../../Actions/index"
 import "../../styles.css"
-import { fade } from "@material-ui/core";
 
 
 
@@ -47,7 +48,7 @@ class Home extends Component{
         if(this.props.error){
             console.log("ERROR")
             return(
-                <div>
+                <div className="loginErrorMessage" elevation={6} variant="filled">
                     ERROR NO user
                 </div>
             )
@@ -59,7 +60,7 @@ class Home extends Component{
         return(
             <div>
                     <Typography variant="h1" component="h2" gutterBottom>
-                        RecipeMaker
+                        RecipEase
                     </Typography>
                         <form className="loginBox">
                             <TextField 
