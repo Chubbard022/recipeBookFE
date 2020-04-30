@@ -6,6 +6,7 @@ import {connect} from "react-redux"
 
 import {login} from "../../Actions/index"
 import "../../styles.css"
+import { fade } from "@material-ui/core";
 
 
 
@@ -17,7 +18,8 @@ class Home extends Component{
             login: {
                 username: "",
                 password: ""
-            }
+            },
+            clickedLogin: false
         }
     }    
     handleChange = (e) =>{
@@ -29,14 +31,31 @@ class Home extends Component{
         })
     }
     handleSubmit = () =>{
-        console.log(this.state.login)
-        console.log(this.state.login.password)
         this.props.login(this.state.login)
-        this.props.history.push("/Dashboard")
+        this.setState({...this.state,clickedLogin:true})
+        
+    }
+    handleRedirect(){
+        let token = localStorage.getItem("jwt")
+
+
+
+        if((token) && (this.state.clickedLogin === true)){
+            this.setState({...this.state, clickedLogin: false})
+            this.props.history.push("/dashboard")
+        }
+        if(this.props.error){
+            console.log("ERROR")
+            return(
+                <div>
+                    ERROR NO user
+                </div>
+            )
+        }
     }
 
-
     render(){
+        console.log(this.state.clickedLogin)
         return(
             <div>
                     <Typography variant="h1" component="h2" gutterBottom>
@@ -64,6 +83,7 @@ class Home extends Component{
                                 <a className="registerRedirect" onClick={()=>this.props.history.push("/register")}> here</a>
                             </p>
                         </form>
+                        {this.handleRedirect()}
             </div>
         )
     }
@@ -71,7 +91,7 @@ class Home extends Component{
 
 const mapStateToProps = (state) =>({
     error: state.error,
-    message: state.message
+    message: state.message,
 })
 
 export default connect(
