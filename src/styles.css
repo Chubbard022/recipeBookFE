@@ -7,8 +7,13 @@
 
 /* DASHBOARD */
 
+.dashboard{
+  border: 1px solid black;
+}
+
 .dashboardMain{
-  border: 3px solid red;
+  display:flex;
+  justify-content: space-between;
   padding: 10%;
   
 }
@@ -22,9 +27,17 @@
   border: 1px solid black;
   width:50%;
 }
+.dashboardComp{
+  border:3px solid red;
+}
+
 
 
 /* HOME */
+.loginScreen{
+  margin: 8% auto
+}
+
 .loginBox{
   border:1px solid black;
   width: 30%;
@@ -33,7 +46,20 @@
   border-radius: 2%;
   box-shadow: 3px 3px 3px rgb(167, 163, 163)
 }
-
+.loginTextField{
+  font-size: 10%;
+  border:1px solid black;
+}
 .registerRedirect{
   color:blue;
+}
+.loginError{
+  border: 1px solid #F44335;
+  background-color:#F44335;
+  border-radius: 5px;
+  margin: 0 auto;
+  width: 50%;
+  color: white;
+  box-shadow: 3px 3px 3px #DBDBDB;
+  padding:1%;
 }
