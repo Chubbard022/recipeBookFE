@@ -4,23 +4,23 @@ import Typography from '@material-ui/core/Typography';
 
 function SideBar(props){
     return(
-        <div className="dashboardComp">
-            <div>
+        <div className="sideBar">
+            <div className="sideBarLinks">
                 <Link to="/account"> 
-                                    Account
-                                </Link>
-                                <Link to="/recipemaker">
-                                    Create Recipe
-                                </Link>
-                                <Link to="/inspiration">
-                                    Get Inspiration
-                                </Link>
-                                <Link to="/social">
-                                    Find other Users
+                    Account
                 </Link>
-            </div>
-            <div>
-                LOGOUT
+                <Link to="/recipemaker">
+                    Create Recipe
+                </Link>
+                <Link to="/inspiration">
+                    Get Inspiration
+                </Link>
+                <Link to="/social">
+                    Find other Users
+                </Link>
+                <div>
+                    LOGOUT
+                </div>
             </div>
         </div>
     )
