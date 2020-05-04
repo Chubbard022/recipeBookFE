@@ -1,6 +1,7 @@
 .App {
   font-family: sans-serif;
   text-align: center;
+  background-color:
 }
 
 
@@ -14,24 +15,45 @@
 .dashboardMain{
   display:flex;
   justify-content: space-between;
-  padding: 10%;
-  
 }
 .dashboardLayer{
-  border:2px solid blue;
   padding: 3%;
   display: flex;
+
 }
 
 .DashboardBlock{
   border: 1px solid black;
-  width:50%;
+  margin: 0 auto;
+  padding:0.5%;
+  padding-bottom:10%; 
+  box-sizing: border-box;
+  border-radius: 2%;
 }
+.CardTitle{
+  color:black;
+  background: #008BF1;
+}
+
 .dashboardComp{
-  border:3px solid red;
+  border:3px solid burlywood;
+  width:99%;
+
+}
+.sideBar{
+  /* border:2px solid pink; */
+}
+.sideBarLinks{
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 
+.dashboardHeader{
+  border:1px solid black;
+}
 
 /* HOME */
 .loginScreen{
@@ -52,6 +74,7 @@
 }
 .registerRedirect{
   color:blue;
+  cursor: pointer;
 }
 .loginError{
   border: 1px solid #F44335;
@@ -62,4 +85,10 @@
   color: white;
   box-shadow: 3px 3px 3px #DBDBDB;
   padding:1%;
+}
+
+
+/* LINKS */
+.link{
+  text-decoration: none
 }
