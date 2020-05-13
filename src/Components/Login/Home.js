@@ -31,18 +31,19 @@ class Home extends Component{
         })
     }
     handleSubmit = () =>{
-        this.setState({...this.state,clickedLogin:true})
         if(this.state.login.username === "" && this.state.login.username === ""){
             this.setState({...this.state, errorMessage: "please enter username and password"})
         }else{
             this.props.login(this.state.login)
-            this.handleRedirect()
-        }
-    }
-    handleRedirect(){
-        let token = localStorage.getItem("jwt")
+            this.setState({clickedLogin:true})
+            let token = localStorage.getItem("jwt")
 
-        if((token) && (this.state.clickedLogin === true)){
+        this.handleRedirect(token)
+    }
+    }
+    handleRedirect(token){
+        console.log("TOKEN",token)
+        if((token)){
             this.setState({...this.state, clickedLogin: false})
             this.setState({...this.state, errorMessage:""})
             this.props.history.push("/dashboard")
