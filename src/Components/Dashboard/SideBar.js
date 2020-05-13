@@ -6,19 +6,19 @@ function SideBar(props){
     return(
         <div className="sideBar">
             <div className="sideBarLinks">
-                <Link to="/account"> 
+                <Link className="sideBarLink" to="/account"> 
                     Account
                 </Link>
-                <Link to="/recipemaker">
+                <Link className="sideBarLink" to="/recipemaker">
                     Create Recipe
                 </Link>
-                <Link to="/inspiration">
+                <Link className="sideBarLink" to="/inspiration">
                     Get Inspiration
                 </Link>
-                <Link to="/social">
+                <Link className="sideBarLink" to="/social">
                     Find other Users
                 </Link>
-                <div>
+                <div className="sideBarLink" >
                     LOGOUT
                 </div>
             </div>

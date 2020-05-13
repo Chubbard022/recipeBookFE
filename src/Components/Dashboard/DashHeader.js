@@ -4,7 +4,19 @@ import "../../styles.css"
 function DashHeader(props){
     return(
         <div className="dashboardHeader">
-            DASH header
+            <div className="dashboardContentLeft">
+                RecipEase
+            </div>
+
+            <div className="dashboardHeaderRight">
+                <div style={{padding: "4px"}}>
+                    Search
+                </div>
+                <div style={{padding: "4px"}}>
+                    Account
+                </div>
+            </div>
+
         </div>
     )
 }
