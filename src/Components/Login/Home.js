@@ -16,8 +16,9 @@ class Home extends Component{
         this.state = {
             login: {
                 username: "",
-                password: ""
+                password: "",
             },
+            errorMessage: "",
             clickedLogin: false
         }
     }    
@@ -30,25 +31,25 @@ class Home extends Component{
         })
     }
     handleSubmit = () =>{
-        this.props.login(this.state.login)
-        this.setState({...this.state,clickedLogin:true})
-        
+        if(this.state.login.username === "" && this.state.login.username === ""){
+            this.setState({...this.state, errorMessage: "please enter username and password"})
+        }else{
+            this.props.login(this.state.login)
+            this.setState({clickedLogin:true})
+            let token = localStorage.getItem("jwt")
+
+        this.handleRedirect(token)
     }
-    handleRedirect(){
-        let token = localStorage.getItem("jwt")
-
-
-
-        if((token) && (this.state.clickedLogin === true)){
+    }
+    handleRedirect(token){
+        console.log("TOKEN",token)
+        if((token)){
             this.setState({...this.state, clickedLogin: false})
+            this.setState({...this.state, errorMessage:""})
             this.props.history.push("/dashboard")
         }
-        if(this.props.error){
-            return(
-                <div className="loginErrorMessage" elevation={6} variant="filled">
-                    No User Found With Matching Username & Password
-                </div>
-            )
+        else{
+            this.setState({...this.state, errorMessage: "No User Found With Matching Username & Password"})
         }
     }
 
@@ -59,8 +60,8 @@ class Home extends Component{
                         RecipEase
                     </Typography>
                     <form className="loginBox">
-                            <div className={this.state.clickedLogin? "loginError": null}>
-                                {this.handleRedirect()}
+                            <div className={this.state.errorMessage? "loginError": null}>
+                                {this.state.errorMessage}
                             </div>
                             <TextField 
                                 required id="standard-required" 

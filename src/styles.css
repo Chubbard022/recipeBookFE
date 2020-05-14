@@ -1,5 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+
 .App {
   font-family: sans-serif;
+  text-align: center;
+  background-color: #F8F8F8;
+  font-family: 'Roboto', sans-serif;
+}
+
 
 }
 
@@ -20,20 +28,24 @@
 }
 
 .DashboardBlock{
-  border: 1px solid black;
+  background-color: rgb(241, 240, 240);
   margin: 0 auto;
-  padding:0.5%;
   padding-bottom:10%; 
   box-sizing: border-box;
   border-radius: 2%;
+  font-family: 'Roboto', sans-serif;
 }
 .CardTitle{
   color:black;
   background: #008BF1;
+  font-family: 'Roboto', sans-serif;
+  padding: 10px;
+  border-top-left-radius: 3%;
+  border-top-right-radius: 3%;
+
 }
 
 .dashboardComp{
-  border:3px solid burlywood;
   width:99%;
 
 }
@@ -87,5 +99,34 @@
 
 /* LINKS */
 .link{
-  text-decoration: none
+  text-decoration: none;
+}
+
+
+
+/* SIDEBAR */
+.sideBar{
+  background-color: #3F3F3F;
+  padding: 1%;
+}
+.sideBarLinks{
+  background-color: #3F3F3F;
+}
+.sideBarLink{
+  text-decoration: none;
+  background-color: #3F3F3F;
+  color: white;
+}
+
+.dashboardHeader{
+  display: flex;
+  justify-content: space-between;
+}
+.dashboardHeaderRight{
+  display: flex;
+  justify-content: space-around;
+
+}
+.dashboardContentLeft{
+  padding: 0.4%
 }
