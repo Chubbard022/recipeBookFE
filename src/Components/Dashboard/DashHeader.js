@@ -9,10 +9,10 @@ function DashHeader(props){
             </div>
 
             <div className="dashboardHeaderRight">
-                <div style={{padding: "4px"}}>
+                <div style={{padding: "6px", fontSize: "25px"}}>
                     Search
                 </div>
-                <div style={{padding: "4px"}}>
+                <div style={{padding: "6px", fontSize: "25px"}}>
                     Account
                 </div>
             </div>
