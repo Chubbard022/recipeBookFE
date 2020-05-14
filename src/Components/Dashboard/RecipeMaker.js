@@ -1,9 +1,11 @@
-import React,{Component} from "react"
+import React, {Component} from "react"
+import {connect} from "react-redux"
+
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-
+import {createRecipe} from "../../Actions/recipe"
 import "../../styles.css"
 
 //overriding default theme 
@@ -28,7 +30,7 @@ const theme = createMuiTheme({
     },
   });
 
-export class RecipeMaker extends Component{
+class RecipeMaker extends Component{
     constructor(props){
         super(props)
         this.state={
@@ -40,8 +42,6 @@ export class RecipeMaker extends Component{
             }
         }
     }
-
-
     render(){
         return(
             <div>
@@ -96,3 +96,11 @@ export class RecipeMaker extends Component{
         )
     }
 }
+
+const mapStateToProps = (state) =>({
+
+})
+export default connect(
+    mapStateToProps,
+    {createRecipe}
+)(RecipeMaker);
