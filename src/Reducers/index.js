@@ -23,7 +23,8 @@ const initialState = {
     fetchingRecipes: false,
     signingUp: false,
     token:localStorage.getItem('jwt'),
-    recipes:[]
+    recipes:[],
+    username: ""
 }
 
 export const reducer = (state=initialState,action) =>{
@@ -38,7 +39,6 @@ export const reducer = (state=initialState,action) =>{
             return{
                 ...state,
                 registering:false,
-                message: action.payload
             }
         case REGISTER_FAILURE:
             return{
@@ -56,14 +56,14 @@ export const reducer = (state=initialState,action) =>{
             return{
                 ...state,
                 loggedIn: false,
-                message: action.payload
+                message: action.payload.message,
+                username: action.payload.username
             }
         case LOGIN_FAILURE:
             return{
                 ...state,
                 loggedIn: false,
                 error: action.payload,
-                //errorStatusCode: action.payload.status
             }
         case LOGOUT:
             return{
