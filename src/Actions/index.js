@@ -39,7 +39,7 @@ export const login = creds => dispatch =>{
         localStorage.setItem("jwt", res.data.token)
             dispatch({
                 type: LOGIN_SUCCESS,
-                payload: res.data.message 
+                payload: res.data 
             })
         })
         .catch(err=>{
