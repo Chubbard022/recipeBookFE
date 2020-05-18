@@ -7,13 +7,28 @@ import {
     REGISTER_SUCCESS,
     LOGOUT,
     LOGOUT_FAILURE,
-    LOGOUT_SUCCESS
+    LOGOUT_SUCCESS,
 } from "../Actions/index"
+import {
+    GET_RECIPE,
+    GET_RECIPE_SUCCESS,
+    GET_RECIPE_FAILURE,
+    CREATE_RECIPE,
+    CREATE_RECIPE_SUCCESS,
+    CREATE_RECIPE_FAILURE,
+    EDIT_RECIPE,
+    EDIT_RECIPE_SUCCESS,
+    EDIT_RECIPE_FAILURE,
+    DELETE_RECIPE,
+    DELETE_RECIPE_SUCCESS,
+    DELETE_RECIPE_FAILURE
+} from "../Actions/recipe"
 
 const initialState = {
     registering: false,
     loggedIn: false,
     loggingOut: false,
+    gettingRecipe: false,
     addingRecipe:false,
     deletingRecipe: false,
     editingRecipe: false,
@@ -81,9 +96,62 @@ export const reducer = (state=initialState,action) =>{
             return{
                 ...state,
                 loggingOut: false,
-                message: action.payloads
+                message: action.payload
             }
-
+        case GET_RECIPE :
+            return{
+                ...state,
+                gettingRecipe: true,
+                error: null,
+            }
+        case GET_RECIPE_FAILURE:
+            return{
+                ...state,
+                error: action.payload,
+                gettingRecipe: false
+            }
+        case GET_RECIPE_SUCCESS:
+            return{
+                ...state,
+                gettingRecipe:false,
+                recipes: action.payload
+            }
+        case CREATE_RECIPE:
+            return{
+                ...state,
+                error: null,
+                addingRecipe: true
+            }
+        case CREATE_RECIPE_FAILURE:
+            return {
+                ...state,
+                addingRecipe:false,
+                error: action.payload
+            }
+        case CREATE_RECIPE_SUCCESS:
+                state.recipes.push(action.paylaod)
+            return {
+                ...state,
+                addingRecipe: false,
+            }
+        case EDIT_RECIPE:
+            return{
+                ...state,
+                editingRecipe: true,
+                error: null
+            }
+        case EDIT_RECIPE_FAILURE:
+            return{
+                ...state,
+                editingRecipe:false,
+                error: action.payload
+            }
+        case EDIT_RECIPE_SUCCESS:
+            return{
+                ...state,
+                editingRecipe:false,
+                //need to update list of recipes with edited recipe
+            }
         default:
             return state;
     }
