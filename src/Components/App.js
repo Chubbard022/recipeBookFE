@@ -7,7 +7,7 @@ import {Dashboard} from "./Dashboard/Dashboard"
 import {Inspiration} from "./Dashboard/Inspiration"
 import RecipeMaker from "./Dashboard/RecipeMaker"
 import {Social} from "./Dashboard/Social"
-import {UserAccount} from "./Dashboard/UserAccount"
+import UserAccount from "./Dashboard/UserAccount"
 import Register from "./Login/Register"
 
 export default function App() {
