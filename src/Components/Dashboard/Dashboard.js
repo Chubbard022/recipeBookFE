@@ -4,17 +4,16 @@ import Typography from '@material-ui/core/Typography';
 
 import SideBar from "./SideBar"
 import DashHeader from "./DashHeader"
-
 import "../../styles.css"
 
 
 
-export const Dashboard = () =>{
+const Dashboard = (props) =>{
     return(
         <div className="dashboard">
             <DashHeader/>
                 <div className="dashboardMain">
-                    <SideBar />
+                    <SideBar location={props.history} />
                         <div className="dashboardComp">
                             <div className="dashboardLayer">
                                 <div className="DashboardBlock">
@@ -54,3 +53,4 @@ export const Dashboard = () =>{
         </div>
     )
 }
+export default Dashboard

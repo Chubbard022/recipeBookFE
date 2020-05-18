@@ -1,8 +1,16 @@
 import React from "react"
 import { BrowserRouter as Router, Route,Link} from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
+import {logout} from "../../Actions/index"
+import {connect} from "react-redux"
+
+
+
 
 function SideBar(props){
+    const handleLogout = () =>{
+        props.logout()
+        props.location.push("/")
+    }
     return(
         <div className="sideBar">
             <div className="sideBarLinks">
@@ -18,11 +26,17 @@ function SideBar(props){
                 <Link className="sideBarLink" to="/social">
                     Find other Users
                 </Link>
-                <div className="sideBarLink" >
+                <div className="sideBarLink" onClick={handleLogout}>
                     LOGOUT
                 </div>
             </div>
         </div>
     )
 }
-export default SideBar
+
+
+
+export default connect(
+    null,
+    {logout}
+)(SideBar)

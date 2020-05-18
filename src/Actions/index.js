@@ -51,18 +51,6 @@ export const login = creds => dispatch =>{
 }
 
 export const logout = () => dispatch =>{
-    dispatch({type:LOGOUT})
     localStorage.clear()
-    .then(res=>{
-        dispatch({
-            type: LOGOUT_SUCCESS,
-            payload: "Successfully logged out"
-        })
-    })
-    .catch(err=>{
-        dispatch({
-            type: LOGOUT_FAILURE,
-            payload: "ERROR: Couldn't logout successfully"
-        })
-    })
+    return dispatch({type:LOGOUT})
 }
