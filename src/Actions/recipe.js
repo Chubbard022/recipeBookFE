@@ -42,7 +42,7 @@ export const createRecipe = (newRecipe) => dispatch =>{
             .then(res=>{
                 dispatch({
                     type: CREATE_RECIPE_SUCCESS,
-                    payload: res.data
+                    payload: newRecipe
                 })
             })
             .catch(err=>{
