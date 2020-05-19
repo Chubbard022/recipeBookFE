@@ -1,5 +1,5 @@
 import React,{Component} from "react"
-import TextField from '@material-ui/core/TextField';
+import {TextField} from "../../CustomElements/Textfield"
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import {connect} from "react-redux"
@@ -33,29 +33,25 @@ class Register extends Component{
 
     render(){
         return(
-            <div>
-                <header>
-                    <body>
-                        <form className="loginBox">
-                            <TextField  
-                                type="text"
-                                label="Username"
-                                name="username"
-                                onChange={this.handleChange}
-                            />
-                            <br/>
-                            <TextField 
-                                type="password" 
-                                style={{paddingBottom: "10%"}}
-                                label="Password"
-                                name="password"
-                                onChange={this.handleChange}
-                            />
-                            <br/>
-                            <Button variant="contained" color="primary" onClick={this.handleSubmit}>Submit</Button>
-                        </form>
-                    </body>
-                </header>
+            <div className="registerPage">
+                <form className="registerBox">
+                    <TextField  
+                        required id="standard-required" 
+                        placeholder="Username" 
+                        type="text"
+                        name="username"
+                        onChange={this.handleChange}
+                    />
+                    <br/>
+                    <TextField 
+                        type="password" 
+                        placeholder="Password" 
+                        name="password"
+                        onChange={this.handleChange}
+                    />
+                    <br/>
+                    <Button style={{fontSize: "22px", marginTop: "4%"}} variant="contained" color="primary" onClick={this.handleSubmit}>Submit</Button>
+                </form>
             </div>
         )
     }

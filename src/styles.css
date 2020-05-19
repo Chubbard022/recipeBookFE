@@ -76,6 +76,18 @@
   color:blue;
   cursor: pointer;
 }
+.registerPage{
+  margin-top: 13.4%;
+}
+.registerBox{
+  border:1px solid black;
+  width: 30%;
+  height: 19vh;
+  margin: 0 auto;
+  padding: 1%;
+  border-radius: 2%;
+  box-shadow: 3px 3px 3px rgb(167, 163, 163)
+}
 .loginError{
   border: 1px solid #F44335;
   background-color:#F44335;
