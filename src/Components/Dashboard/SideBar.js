@@ -15,7 +15,7 @@ function SideBar(props){
         <div className="sideBar">
             <div className="sideBarLinks">
                 <Link className="sideBarLink" to="/account"> 
-                    Account
+                    My Recipes
                 </Link>
                 <Link className="sideBarLink" to="/recipemaker">
                     Create Recipe
