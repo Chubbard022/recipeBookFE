@@ -18,7 +18,6 @@ class Home extends Component{
                 password: "",
             },
             errorMessage: "",
-            clickedLogin: false
         }
     }    
     handleChange = (e) =>{
@@ -29,29 +28,17 @@ class Home extends Component{
             }
         })
     }
-    handleSubmit = () =>{
+    handleSubmit = (e) =>{
+        e.preventDefault()
         if(this.state.login.username === "" && this.state.login.username === ""){
             this.setState({...this.state, errorMessage: "please enter username and password"})
-        }else{
-            this.props.login(this.state.login)
-            this.setState({clickedLogin:true})
-            let token = localStorage.getItem("jwt")
-
-        this.handleRedirect(token)
-    }
-    }
-    handleRedirect(token){
-        console.log("TOKEN",token)
-        if((token)){
-            this.setState({...this.state, clickedLogin: false})
-            this.setState({...this.state, errorMessage:""})
-            this.props.history.push("/dashboard")
         }
         else{
-            this.setState({...this.state, errorMessage: "No User Found With Matching Username & Password"})
+            this.props.login(this.state.login)
+            .then(()=>this.props.message? this.props.history.push("/dashboard") :this.setState({...this.state, errorMessage: "Could not Find match with provided Username & Password "}))
+            .catch((err)=>console.log("ERR",err))
         }
     }
-
     render(){
         return(
             <div className="loginScreen">
