@@ -76,6 +76,18 @@
   color:blue;
   cursor: pointer;
 }
+.registerPage{
+  margin-top: 13.4%;
+}
+.registerBox{
+  border:1px solid black;
+  width: 30%;
+  height: 19vh;
+  margin: 0 auto;
+  padding: 1%;
+  border-radius: 2%;
+  box-shadow: 3px 3px 3px rgb(167, 163, 163)
+}
 .loginError{
   border: 1px solid #F44335;
   background-color:#F44335;
@@ -110,6 +122,9 @@
 .sideBarLinks{
   background-color: #3F3F3F;
 }
+.sideBarLinks div:hover{
+  cursor: pointer;
+}
 .sideBarLink{
   text-decoration: none;
   background-color: #3F3F3F;
@@ -124,6 +139,9 @@
 .dashboardHeaderRight{
   display: flex;
   font-size: 25px;
+}
+.dashboardHeaderRight div:hover{
+  cursor: pointer;
 }
 .dashboardContentLeft{
   padding: 0.4%;
@@ -147,4 +165,10 @@
   margin-top: 3%;
   border-radius: 3px;
   box-shadow: 3px 3px 3px rgb(167, 163, 163)
+}
+.searchBar{
+  border:1px solid black;
+  font-size: 18px;
+  border-radius: 10px;
+  padding: 3%;
 }

@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter as Router, Route,Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 
 import SideBar from "./SideBar"
@@ -7,19 +7,21 @@ import DashHeader from "./DashHeader"
 import "../../styles.css"
 
 
-
 const Dashboard = (props) =>{
+    function redirect(){
+         props.history.push("/account")
+    }
     return(
         <div className="dashboard">
-            <DashHeader/>
+            <DashHeader redirect={redirect}/>
                 <div className="dashboardMain">
-                    <SideBar location={props.history} />
+                    <SideBar />
                         <div className="dashboardComp">
                             <div className="dashboardLayer">
                                 <div className="DashboardBlock">
                                     <Link className="link" to="/account"> 
                                         <Typography className="CardTitle"  variant="h4" component="h2" gutterBottom>
-                                            Account
+                                            My Recipes
                                         </Typography>
                                     </Link>
                                 </div>
