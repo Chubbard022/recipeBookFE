@@ -122,6 +122,9 @@
 .sideBarLinks{
   background-color: #3F3F3F;
 }
+.sideBarLinks div:hover{
+  cursor: pointer;
+}
 .sideBarLink{
   text-decoration: none;
   background-color: #3F3F3F;
