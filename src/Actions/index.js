@@ -33,7 +33,8 @@ export const register = creds => dispatch =>{
 
 export const login = creds => dispatch =>{
     dispatch({type: LOGIN})
-    axios
+    
+    return axios
     .post(`${URL}/login`,creds)
     .then(res=>{
         localStorage.setItem("jwt", res.data.token)
@@ -41,6 +42,7 @@ export const login = creds => dispatch =>{
                 type: LOGIN_SUCCESS,
                 payload: res.data 
             })
+            
         })
         .catch(err=>{
             dispatch({
@@ -48,6 +50,7 @@ export const login = creds => dispatch =>{
                 payload: "ERROR: Failure to successfully login"
             })
         })
+    
 }
 
 export const logout = () => dispatch =>{
