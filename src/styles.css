@@ -172,3 +172,16 @@
   border-radius: 10px;
   padding: 3%;
 }
+.vanish{
+  display: none
+}
+.editRecipeDisplay{
+  border: 1px solid black;
+  display: flex;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.editRecipeInput{
+  border:1px solid grey;
+}
