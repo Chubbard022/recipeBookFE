@@ -53,10 +53,11 @@ export const createRecipe = (newRecipe) => dispatch =>{
             })
 }
 
-export const editRecipe = (editedRecipe) => dispatch=>{
+export const editRecipe = (recipe) => dispatch=>{
+    console.log("^^^^^^^",recipe)
     dispatch({type:EDIT_RECIPE})
     axios
-    .post(`${URL}/recipes`,editRecipe)
+    .put(`${URL}/recipes/${recipe.id}`,recipe)
         .then(res=>{
             dispatch({
                 type: EDIT_RECIPE_SUCCESS,

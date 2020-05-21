@@ -4,43 +4,51 @@ import "../../styles.css"
 
 
 
-function EditUserAccount({editRecipe,handleEditChange,handleFinishEdit}){
+function EditUserAccount({handleEditChange,handleFinishEdit,recipeToEdit}){
     return(
-        <React.Fragment>
             <div className="editRecipeDisplay">
-                <div >
+                <div className="editRecipeDisplayInput">
                     <p>Name:</p>
-                    <input           
-                        value={editRecipe.name}
+                    <input
+                        name="name"           
+                        value={recipeToEdit.name}
                         onChange={handleEditChange}
                         className="editRecipeInput"
                     />
                 </div>
 
-                <div>
+                <div className="editRecipeDisplayInput">
                     <p>ingredients:</p>
                     <input 
-                        value={editRecipe.ingredients}
+                        name="ingredients"
+                        value={recipeToEdit.ingredients}
                         onChange={handleEditChange}
                         className="editRecipeInput"
                     />
                 </div>
 
-                <div>
+                <div className="editRecipeDisplayInput">
                     <p>Instructions:</p>
                     <input
-                        value={editRecipe.instructions}
+                        name="instructions"
+                        value={recipeToEdit.instructions}
                         onChange={handleEditChange}
-                        className="editRecipeInput"
+                        className="editRecipeInput editRecipeLastInput"
                     />
                 </div>
+                <div className="editRecipeButtons">
+                    <Button 
+                        variant="contained" 
+                        color="primary" 
+                        onClick={handleFinishEdit}
+                    >Done</Button>
+                    <Button 
+                        variant="contained" 
+                        color="secondary" 
+                        onClick={handleFinishEdit}
+                    >Delete</Button>
+                </div>
             </div>
-            <Button 
-                variant="contained" 
-                color="secondary" 
-                onClick={handleFinishEdit}
-            >Done</Button>
-        </React.Fragment>
     )
 }
 

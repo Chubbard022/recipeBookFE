@@ -1,9 +1,8 @@
 import React,{Component} from "react"
 import {connect} from "react-redux"
-import {Link} from 'react-router-dom';
 import Button from "@material-ui/core/Button"
 
-import {getRecipes} from "../../Actions/recipe"
+import {getRecipes,editRecipe,deleteRecipe} from "../../Actions/recipe"
 import EditUserAccount from "./EditUserAccount"
 import "../../styles.css"
 
@@ -14,34 +13,64 @@ class UserAccount extends Component{
             super(props)
             this.state={
                 personalRecipes: [],
-                editRecipe: [],
-                edit: false
+                recipeToEdit: {
+                    id: 0,
+                    name: "",
+                    instructions: "",
+                    ingredients: "",
+                    username: this.props.username
+                }
             }
         }
         componentDidMount() {
+            this.props.getRecipes()
             let filterRecipes = this.props.recipes.filter(recipe=> recipe.username == this.props.username)
             this.setState({...this.state,personalRecipes:filterRecipes})
         }
         handleSelectEdit(recipe){
-            let temp = []
-            temp.push(recipe)
             this.setState({
                 ...this.state,
-                editRecipe:temp,
-                edit: !this.state.edit
+                recipeToEdit:{
+                    ...this.state.recipeToEdit,
+                    id: recipe.id,
+                    name: recipe.name,
+                    instructions: recipe.instructions,
+                    ingredients: recipe.ingredients
+                }
             })
-            
         }
-        handleEditChange = () =>{
-            console.log("WORKS")
+        handleEditChange = (e) =>{
+            this.setState({
+                ...this.state,
+                recipeToEdit:{
+                    ...this.state.recipeToEdit,
+                    [e.target.name]: e.target.value            
+            }})
+
         }
         handleFinishEdit = () =>{
-            let temp = []
-            this.setState({...this.state, editRecipe:temp})
+            let temp = {
+                "id": 4,
+                "name": "EARL",
+                "ingredients": "the",
+                "instructions": "CAR",
+                "username": ""
+            }
+            this.props.editRecipe(temp)
+            this.setState({
+                ...this.state, 
+                recipeToEdit:{
+                    id: 0,
+                    name: "",
+                    instructions: "",
+                    ingredients: "",
+                    username: ""
+                }
+            })
+            this.props.getRecipes()
         }
 
         render(){
-            console.log(this.state)
         return(
             <div>
                 <Button
@@ -50,7 +79,8 @@ class UserAccount extends Component{
                     color="primary" 
                 >Back To Dashboard</Button>
 
-                <div className={this.state.editRecipe[0]? "vanish" : null}>
+                
+                <div className={this.state.recipeToEdit.name? "vanish" : null}>
                     {this.state.personalRecipes.map((recipe,index)=>{
                         return <div className="recipeListDisplay" key={index}> 
                             <p>{recipe.name}</p>
@@ -67,12 +97,11 @@ class UserAccount extends Component{
                         </div>
                     })}
                 </div>
-                {this.state.editRecipe[0]?
+                {this.state.recipeToEdit.name?
                     <EditUserAccount 
-                        editRecipe={this.state.editRecipe[0]} 
-                        edit={this.state.edit}
                         handleEditChange={this.handleEditChange}
                         handleFinishEdit={this.handleFinishEdit}
+                        recipeToEdit={this.state.recipeToEdit}
                     />
                     :
                     null
@@ -89,5 +118,5 @@ const mapStateToProps = (state) =>({
 
 export default connect(
     mapStateToProps,
-    (getRecipes)
+   {getRecipes,editRecipe,deleteRecipe}
 )(UserAccount)
