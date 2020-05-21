@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-import {createRecipe, editRecipe, deleteRecipe,getRecipes} from "../../Actions/recipe"
+import {createRecipe} from "../../Actions/recipe"
 import "../../styles.css"
 
 //overriding default theme 
@@ -140,5 +140,5 @@ const mapStateToProps = (state) =>({
 })
 export default connect(
     mapStateToProps,
-    {createRecipe,editRecipe,deleteRecipe,getRecipes}
+    {createRecipe}
 )(RecipeMaker);

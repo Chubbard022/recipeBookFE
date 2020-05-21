@@ -4,13 +4,14 @@ import "../../styles.css"
 
 
 
-function EditUserAccount({editRecipe,handleEditChange,handleFinishEdit}){
+function EditUserAccount({handleEditChange,handleFinishEdit,recipeToEdit}){
     return(
             <div className="editRecipeDisplay">
                 <div className="editRecipeDisplayInput">
                     <p>Name:</p>
-                    <input           
-                        value={editRecipe.name}
+                    <input
+                        name="name"           
+                        value={recipeToEdit.name}
                         onChange={handleEditChange}
                         className="editRecipeInput"
                     />
@@ -19,7 +20,8 @@ function EditUserAccount({editRecipe,handleEditChange,handleFinishEdit}){
                 <div className="editRecipeDisplayInput">
                     <p>ingredients:</p>
                     <input 
-                        value={editRecipe.ingredients}
+                        name="ingredients"
+                        value={recipeToEdit.ingredients}
                         onChange={handleEditChange}
                         className="editRecipeInput"
                     />
@@ -28,7 +30,8 @@ function EditUserAccount({editRecipe,handleEditChange,handleFinishEdit}){
                 <div className="editRecipeDisplayInput">
                     <p>Instructions:</p>
                     <input
-                        value={editRecipe.instructions}
+                        name="instructions"
+                        value={recipeToEdit.instructions}
                         onChange={handleEditChange}
                         className="editRecipeInput editRecipeLastInput"
                     />

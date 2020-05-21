@@ -104,6 +104,7 @@ export const reducer = (state=initialState,action) =>{
                 ...state,
                 gettingRecipe: true,
                 error: null,
+                recipes: action.payload
             }
         case GET_RECIPE_FAILURE:
             return{
