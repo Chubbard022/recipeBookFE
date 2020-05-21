@@ -175,13 +175,45 @@
 .vanish{
   display: none
 }
+
+
+/* Edit recipe and delete */
 .editRecipeDisplay{
   border: 1px solid black;
   display: flex;
+  flex-wrap: wrap;
   width: 50%;
   margin: 0 auto;
+  margin-top: 8%;
 }
 
 .editRecipeInput{
-  border:1px solid grey;
+  border: 1px solid grey;
+  width:60%;
+  font-size: 16px;
+
+}
+.editRecipeDisplayInput{
+  width: 100%;
+  display: flex;
+  margin: 2% 0 3% 0
+}
+
+.editRecipeDisplayInput p{
+  margin-left: 1%;
+  margin-right: 4%;
+}
+.editRecipeButtons{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10%;
+  margin-bottom: 2%;
+  padding:2%;
+}
+.editRecipeDisplayInput:first-child input{
+  margin-left: 2.5%;
+}
+.editRecipeInput.editRecipeLastInput{
+  margin-left: -0.5%;
 }

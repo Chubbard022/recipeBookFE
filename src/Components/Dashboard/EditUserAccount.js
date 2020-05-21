@@ -6,9 +6,8 @@ import "../../styles.css"
 
 function EditUserAccount({editRecipe,handleEditChange,handleFinishEdit}){
     return(
-        <React.Fragment>
             <div className="editRecipeDisplay">
-                <div >
+                <div className="editRecipeDisplayInput">
                     <p>Name:</p>
                     <input           
                         value={editRecipe.name}
@@ -17,7 +16,7 @@ function EditUserAccount({editRecipe,handleEditChange,handleFinishEdit}){
                     />
                 </div>
 
-                <div>
+                <div className="editRecipeDisplayInput">
                     <p>ingredients:</p>
                     <input 
                         value={editRecipe.ingredients}
@@ -26,21 +25,27 @@ function EditUserAccount({editRecipe,handleEditChange,handleFinishEdit}){
                     />
                 </div>
 
-                <div>
+                <div className="editRecipeDisplayInput">
                     <p>Instructions:</p>
                     <input
                         value={editRecipe.instructions}
                         onChange={handleEditChange}
-                        className="editRecipeInput"
+                        className="editRecipeInput editRecipeLastInput"
                     />
                 </div>
+                <div className="editRecipeButtons">
+                    <Button 
+                        variant="contained" 
+                        color="primary" 
+                        onClick={handleFinishEdit}
+                    >Done</Button>
+                    <Button 
+                        variant="contained" 
+                        color="secondary" 
+                        onClick={handleFinishEdit}
+                    >Delete</Button>
+                </div>
             </div>
-            <Button 
-                variant="contained" 
-                color="secondary" 
-                onClick={handleFinishEdit}
-            >Done</Button>
-        </React.Fragment>
     )
 }
 
