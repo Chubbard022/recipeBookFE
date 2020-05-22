@@ -54,15 +54,18 @@ export const createRecipe = (newRecipe) => dispatch =>{
 }
 
 export const editRecipe = (recipe) => dispatch=>{
-    console.log("^^^^^^^",recipe)
     dispatch({type:EDIT_RECIPE})
     axios
     .put(`${URL}/recipes/${recipe.id}`,recipe)
         .then(res=>{
-            dispatch({
-                type: EDIT_RECIPE_SUCCESS,
-                payload: res.data
-            })
+            axios
+            .get(`${URL}/recipes`)
+                .then(res=>{
+                    dispatch({
+                        type: EDIT_RECIPE_SUCCESS,
+                        payload: res.data
+                    })
+                })
         })
         .catch(err=>{
             dispatch({
@@ -71,10 +74,10 @@ export const editRecipe = (recipe) => dispatch=>{
             })
         })
 }
-export const deleteRecipe = (deleteRecipe) => dispatch =>{
+export const deleteRecipe = (recipe) => dispatch =>{
     dispatch({type: DELETE_RECIPE})
     axios
-        .delete(`${URL}/recipes`,deleteRecipe)
+        .delete(`${URL}/recipes/${recipe.id}`,recipe)
             .then(res=>{
                 dispatch({
                     type: DELETE_RECIPE_SUCCESS,

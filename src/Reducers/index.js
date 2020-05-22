@@ -152,7 +152,7 @@ export const reducer = (state=initialState,action) =>{
             return{
                 ...state,
                 editingRecipe:false,
-                //need to update list of recipes with edited recipe
+                recipes: action.payload
             }
         default:
             return state;
