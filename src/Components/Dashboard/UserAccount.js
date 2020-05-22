@@ -19,13 +19,17 @@ class UserAccount extends Component{
                     instructions: "",
                     ingredients: "",
                     username: this.props.username
-                }
+                },
+                editing: false
             }
         }
-        componentDidMount() {
+        getPersonalRecipes(){
             this.props.getRecipes()
             let filterRecipes = this.props.recipes.filter(recipe=> recipe.username == this.props.username)
-            this.setState({...this.state,personalRecipes:filterRecipes})
+            return this.setState({...this.state,personalRecipes:filterRecipes})
+        }
+        componentDidMount() {
+            this.getPersonalRecipes()
         }
         handleSelectEdit(recipe){
             this.setState({
@@ -36,7 +40,8 @@ class UserAccount extends Component{
                     name: recipe.name,
                     instructions: recipe.instructions,
                     ingredients: recipe.ingredients
-                }
+                },
+                editing:true
             })
         }
         handleEditChange = (e) =>{
@@ -49,28 +54,23 @@ class UserAccount extends Component{
 
         }
         handleFinishEdit = () =>{
-            let temp = {
-                "id": 4,
-                "name": "EARL",
-                "ingredients": "the",
-                "instructions": "CAR",
-                "username": ""
-            }
-            this.props.editRecipe(temp)
+            this.props.editRecipe(this.state.recipeToEdit)
             this.setState({
-                ...this.state, 
+                ...this.state,
+                editing: false,
                 recipeToEdit:{
+                    ...this.state.recipeToEdit,
                     id: 0,
                     name: "",
                     instructions: "",
                     ingredients: "",
                     username: ""
-                }
+                },
             })
-            this.props.getRecipes()
+            this.props.history.push("/dashboard")
         }
-
-        render(){
+        
+    render(){
         return(
             <div>
                 <Button
@@ -80,7 +80,7 @@ class UserAccount extends Component{
                 >Back To Dashboard</Button>
 
                 
-                <div className={this.state.recipeToEdit.name? "vanish" : null}>
+                <div className={this.state.editing? "vanish" : null}>
                     {this.state.personalRecipes.map((recipe,index)=>{
                         return <div className="recipeListDisplay" key={index}> 
                             <p>{recipe.name}</p>
@@ -97,7 +97,7 @@ class UserAccount extends Component{
                         </div>
                     })}
                 </div>
-                {this.state.recipeToEdit.name?
+                {this.state.editing?
                     <EditUserAccount 
                         handleEditChange={this.handleEditChange}
                         handleFinishEdit={this.handleFinishEdit}
