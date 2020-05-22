@@ -74,10 +74,10 @@ export const editRecipe = (recipe) => dispatch=>{
             })
         })
 }
-export const deleteRecipe = (deleteRecipe) => dispatch =>{
+export const deleteRecipe = (recipe) => dispatch =>{
     dispatch({type: DELETE_RECIPE})
     axios
-        .delete(`${URL}/recipes`,deleteRecipe)
+        .delete(`${URL}/recipes/${recipe.id}`,recipe)
             .then(res=>{
                 dispatch({
                     type: DELETE_RECIPE_SUCCESS,

@@ -69,6 +69,11 @@ class UserAccount extends Component{
             })
             this.props.history.push("/dashboard")
         }
+        handleDeleteRecipe = () =>{
+            console.log("WORKING")
+            console.log(this.state)
+            this.props.deleteRecipe(this.state.recipeToEdit)
+        }
         
     render(){
         return(
@@ -102,6 +107,7 @@ class UserAccount extends Component{
                         handleEditChange={this.handleEditChange}
                         handleFinishEdit={this.handleFinishEdit}
                         recipeToEdit={this.state.recipeToEdit}
+                        handleDeleteRecipe={this.handleDeleteRecipe}
                     />
                     :
                     null

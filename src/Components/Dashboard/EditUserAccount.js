@@ -4,7 +4,7 @@ import "../../styles.css"
 
 
 
-function EditUserAccount({handleEditChange,handleFinishEdit,recipeToEdit}){
+function EditUserAccount({handleEditChange,handleFinishEdit,recipeToEdit,handleDeleteRecipe}){
     return(
             <div className="editRecipeDisplay">
                 <div className="editRecipeDisplayInput">
@@ -45,7 +45,7 @@ function EditUserAccount({handleEditChange,handleFinishEdit,recipeToEdit}){
                     <Button 
                         variant="contained" 
                         color="secondary" 
-                        onClick={handleFinishEdit}
+                        onClick={handleDeleteRecipe}
                     >Delete</Button>
                 </div>
             </div>
