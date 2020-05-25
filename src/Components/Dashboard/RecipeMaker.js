@@ -4,6 +4,7 @@ import {connect} from "react-redux"
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 import {createRecipe} from "../../Actions/recipe"
 import "../../styles.css"
@@ -34,6 +35,7 @@ class RecipeMaker extends Component{
     constructor(props){
         super(props)
         this.state={
+            successMessage: "",
             form : {
                 name: "",
                 ingredients: "",
@@ -59,14 +61,20 @@ class RecipeMaker extends Component{
             }
         })  
     }
+    successMessage = () =>{
+        this.setState({
+            ...this.state,
+            successMessage: ""
+        })
+    }
 
     handleSubmit = (e) =>{
         e.preventDefault()
         if((this.state.form.name !== "") && (this.state.form.instructions !== "") && (this.state.form.ingredients !== "")){
             this.props.createRecipe(this.state.form)
-            console.log(this.state.form)
-            console.log(this.props)
             this.setState({ 
+                ...this.state,
+                successMessage: "Successfully Created Recipe",
                 form : {
                     ...this.state.form,
                     name: "",
@@ -75,7 +83,7 @@ class RecipeMaker extends Component{
                 }
             })  
         }
-
+        setTimeout(this.successMessage,3000)
     }
 
 
@@ -88,7 +96,17 @@ render(){
                 variant="contained" 
                 color="primary" 
             >Back To Dashboard</Button>
-
+            {
+                (this.state.successMessage)? (
+                <div className="successfullyCreate">
+                    <Alert severity="success">
+                        <AlertTitle><strong>Success</strong></AlertTitle>
+                        successfully created recipe
+                    </Alert>
+                </div>
+                ):
+                null
+            }
             <div className="recipeForm">
                 <ThemeProvider theme={theme}>
                     <form>
