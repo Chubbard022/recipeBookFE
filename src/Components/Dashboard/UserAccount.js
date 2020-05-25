@@ -67,6 +67,7 @@ class UserAccount extends Component{
                     username: ""
                 },
             })
+            
             this.props.history.push("/dashboard")
         }
         handleDeleteRecipe = () =>{
@@ -89,8 +90,8 @@ class UserAccount extends Component{
                     {this.state.personalRecipes.map((recipe,index)=>{
                         return <div className="recipeListDisplay" key={index}> 
                             <p>{recipe.name}</p>
-                            <p>{recipe.instructions}</p>
                             <p>{recipe.ingredients}</p>
+                            <p>{recipe.instructions}</p>
 
                             <Button 
                                 onClick={()=>this.handleSelectEdit(recipe)}
