@@ -31,6 +31,13 @@ class UserAccount extends Component{
         componentDidMount() {
             this.getPersonalRecipes()
         }
+
+        shouldComponentUpdate() {
+            console.log("Update occured")
+            console.log(this.state.personalRecipes)
+            return true;
+        }
+
         handleSelectEdit(recipe){
             this.setState({
                 ...this.state,
@@ -67,8 +74,8 @@ class UserAccount extends Component{
                     username: ""
                 },
             })
-            this.props.history.push("/dashboard")
         }
+
         handleDeleteRecipe = () =>{
             console.log("WORKING")
             console.log(this.state)
@@ -76,6 +83,7 @@ class UserAccount extends Component{
         }
         
     render(){
+        console.log("****",this.props.recipes)
         return(
             <div>
                 <Button
@@ -83,14 +91,22 @@ class UserAccount extends Component{
                     variant="contained" 
                     color="primary" 
                 >Back To Dashboard</Button>
-
+              { this.props.recipes?  (<div>
+                    {this.props.recipes.map(recipe=>{
+                        return <div className="recipeListDisplay">
+                            <p>{recipe.name}</p>
+                            <p>{recipe.ingredients}</p>
+                            <p>{recipe.instructions}</p>
+                        </div>
+                    })}
+                </div>) : null}
                 
                 <div className={this.state.editing? "vanish" : null}>
                     {this.state.personalRecipes.map((recipe,index)=>{
                         return <div className="recipeListDisplay" key={index}> 
                             <p>{recipe.name}</p>
-                            <p>{recipe.instructions}</p>
                             <p>{recipe.ingredients}</p>
+                            <p>{recipe.instructions}</p>
 
                             <Button 
                                 onClick={()=>this.handleSelectEdit(recipe)}
