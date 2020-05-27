@@ -79,10 +79,15 @@ export const deleteRecipe = (recipe) => dispatch =>{
     axios
         .delete(`${URL}/recipes/${recipe.id}`,recipe)
             .then(res=>{
-                dispatch({
-                    type: DELETE_RECIPE_SUCCESS,
-                    payload: res.data
-                })
+                axios
+                .get(`${URL}/recipes`)
+                    .then(res=>{
+                        console.log("RES***",res)
+                        dispatch({
+                            type: DELETE_RECIPE_SUCCESS,
+                            payload: res.data
+                        })
+                    })
             })
             .catch(err=>{
                 dispatch({

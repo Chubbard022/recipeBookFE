@@ -154,6 +154,24 @@ export const reducer = (state=initialState,action) =>{
                 editingRecipe:false,
                 recipes: action.payload
             }
+        case DELETE_RECIPE:
+            return{
+                ...state,
+                error:null,
+                deletingRecipe: true
+            }
+        case DELETE_RECIPE_SUCCESS:
+            return{
+                ...state,
+                deletingRecipe:false,
+                recipes: action.payload
+            }
+        case DELETE_RECIPE_FAILURE:
+            return{
+                ...state,
+                deletingRecipe:false,
+                error:action.payload
+            }
         default:
             return state;
     }
