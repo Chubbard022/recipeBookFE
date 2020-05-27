@@ -23,21 +23,10 @@ class UserAccount extends Component{
                 editing: false
             }
         }
-        getPersonalRecipes(){
-            this.props.getRecipes()
-            let filterRecipes = this.props.recipes.filter(recipe=> recipe.username == this.props.username)
-            return this.setState({...this.state,personalRecipes:filterRecipes})
-        }
         componentDidMount() {
-            this.getPersonalRecipes()
+            this.props.getRecipes()
+    
         }
-
-        shouldComponentUpdate() {
-            console.log("Update occured")
-            console.log(this.state.personalRecipes)
-            return true;
-        }
-
         handleSelectEdit(recipe){
             this.setState({
                 ...this.state,
@@ -77,13 +66,11 @@ class UserAccount extends Component{
         }
 
         handleDeleteRecipe = () =>{
-            console.log("WORKING")
-            console.log(this.state)
             this.props.deleteRecipe(this.state.recipeToEdit)
+            this.setState({...this.state, editing: false})
         }
         
     render(){
-        console.log("****",this.props.recipes)
         return(
             <div>
                 <Button
@@ -91,19 +78,13 @@ class UserAccount extends Component{
                     variant="contained" 
                     color="primary" 
                 >Back To Dashboard</Button>
-              { this.props.recipes?  (<div>
-                    {this.props.recipes.map(recipe=>{
-                        return <div className="recipeListDisplay">
-                            <p>{recipe.name}</p>
-                            <p>{recipe.ingredients}</p>
-                            <p>{recipe.instructions}</p>
-                        </div>
-                    })}
-                </div>) : null}
                 
-                <div className={this.state.editing? "vanish" : null}>
-                    {this.state.personalRecipes.map((recipe,index)=>{
-                        return <div className="recipeListDisplay" key={index}> 
+
+        {this.props.recipes? 
+              ( <div className={this.state.editing? "vanish" : null}>
+                        {this.props.recipes.map((recipe,index)=>{
+                        if(recipe.username === this.props.username){
+                        return <div className="recipeListDisplay" key={index}>
                             <p>{recipe.name}</p>
                             <p>{recipe.ingredients}</p>
                             <p>{recipe.instructions}</p>
@@ -116,8 +97,9 @@ class UserAccount extends Component{
                                 >Edit
                             </Button>
                         </div>
-                    })}
-                </div>
+                    }})}
+                </div>):null}
+
                 {this.state.editing?
                     <EditUserAccount 
                         handleEditChange={this.handleEditChange}
