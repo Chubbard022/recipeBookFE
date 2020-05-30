@@ -81,7 +81,7 @@ class UserAccount extends Component{
                 
 
         {this.props.recipes? 
-              ( <div className={this.state.editing? "vanish" : null}>
+            ( <div className={this.state.editing? "vanish" : null}>
                         {this.props.recipes.map((recipe,index)=>{
                         if(recipe.username === this.props.username){
                         return <div className="recipeListDisplay" key={index}>

@@ -21,7 +21,10 @@ import {
     EDIT_RECIPE_FAILURE,
     DELETE_RECIPE,
     DELETE_RECIPE_SUCCESS,
-    DELETE_RECIPE_FAILURE
+    DELETE_RECIPE_FAILURE,
+    GET_INSPIRATION,
+    GET_INSPIRATION_SUCCESS,
+    GET_INSPIRATION_FAILURE
 } from "../Actions/recipe"
 
 const initialState = {
@@ -39,7 +42,8 @@ const initialState = {
     signingUp: false,
     token: null,
     recipes:[],
-    username: ""
+    username: "",
+    inspirationRecipes: []
 }
 
 export const reducer = (state=initialState,action) =>{
@@ -171,6 +175,23 @@ export const reducer = (state=initialState,action) =>{
                 ...state,
                 deletingRecipe:false,
                 error:action.payload
+            }
+        case GET_INSPIRATION:
+            return{
+                ...state,
+                error: null,
+                gettingRecipe: true
+            }
+        case GET_INSPIRATION_SUCCESS:
+            return{
+                ...state,
+                inspirationRecipes: action.payload,
+                gettingRecipe: false
+            }
+        case GET_INSPIRATION_FAILURE:
+            return{
+                ...state,
+                error: action.payload
             }
         default:
             return state;
