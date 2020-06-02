@@ -14,12 +14,9 @@ export const
     EDIT_RECIPE_FAILURE = "EDIT_RECIPE_FAILURE",
     DELETE_RECIPE = "DELETE_RECIPE",
     DELETE_RECIPE_SUCCESS = "DELETE_RECIPE_SUCCESS",
-    DELETE_RECIPE_FAILURE = "DELETE_RECIPE_FAILURE",
-    GET_INSPIRATION = "GET_INSPIRATION",
-    GET_INSPIRATION_SUCCESS = "GET_INSPIRATION_SUCCESS",
-    GET_INSPIRATION_FAILURE = "GET_INSPIRATION_FAILURE"
+    DELETE_RECIPE_FAILURE = "DELETE_RECIPE_FAILURE"
 
-    const URL = "http://localhost:6500/api"
+const URL = "http://localhost:6500/api"
 
 export const getRecipes = () => dispatch =>{
     dispatch({type: GET_RECIPE})
@@ -98,22 +95,3 @@ export const deleteRecipe = (recipe) => dispatch =>{
                 })
             })
 }   
-
-export const getInspiration = () => dispatch =>{
-    dispatch({type: GET_INSPIRATION})
-    axios
-        .get(`${URL}/newrecipe`)
-            .then(res=>{
-                console.log("**&&**",res)
-                dispatch({
-                    type: GET_INSPIRATION_SUCCESS,
-                    payload: res
-                })
-            })
-            .catch(err=>{
-                dispatch({
-                    type: GET_INSPIRATION_FAILURE,
-                    payload: "ERROR: Failure to get new recipe"
-                })
-            })
-}

@@ -1,9 +1,7 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 import Button from "@material-ui/core/Button"
-
-
-import {getInspiration} from "../../Actions/recipe"
+import {getInspiration} from "../../Actions/inspiration"
 import "../../styles.css"
 
 class Inspiration extends Component{
@@ -16,14 +14,12 @@ class Inspiration extends Component{
     }
 
     componentWillMount(){
-        let test = this.props.getInspiration()
-        console.log(test)
-        // this.setState({
-        //     ...state,
-        //     recipe: this.props.getInspiration
-        // })
-    }
+        
+        }
 
+    test = () =>{
+        this.props.getInspiration()
+    }
 
     render(){
         return(
@@ -34,7 +30,7 @@ class Inspiration extends Component{
                     color="primary" 
                 >Back To Dashboard</Button>
                 <div>
-                    
+                    <button onClick={this.test}>TEST</button>
                 </div>
             </div>
         )
