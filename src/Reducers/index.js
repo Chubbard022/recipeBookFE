@@ -21,11 +21,13 @@ import {
     EDIT_RECIPE_FAILURE,
     DELETE_RECIPE,
     DELETE_RECIPE_SUCCESS,
-    DELETE_RECIPE_FAILURE,
+    DELETE_RECIPE_FAILURE
+} from "../Actions/recipe"
+import {
     GET_INSPIRATION,
     GET_INSPIRATION_SUCCESS,
     GET_INSPIRATION_FAILURE
-} from "../Actions/recipe"
+} from "../Actions/inspiration"
 
 const initialState = {
     registering: false,
