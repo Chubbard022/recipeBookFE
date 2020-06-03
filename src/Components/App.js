@@ -3,6 +3,7 @@ import "../styles.css";
 import { BrowserRouter as Router, Route,Switch} from 'react-router-dom';
 
 import Home from "./Login/Home"
+import {LandingPage} from "../Components/LandingPage"
 import Dashboard from "./Dashboard/Dashboard"
 import Inspiration from "./Dashboard/Inspiration"
 import RecipeMaker from "./Dashboard/RecipeMaker"
@@ -15,7 +16,8 @@ export default function App() {
     <Router>
       <div className="App">
         <Switch>
-          <Route exact path="/" component={Home}/>
+          <Route exact path="/" component={LandingPage}/>
+          <Route path="/login" component={Home}/>
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/register" component={Register} />
 

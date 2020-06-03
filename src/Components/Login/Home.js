@@ -42,9 +42,6 @@ class Home extends Component{
     render(){
         return(
             <div className="loginScreen">
-                    <Typography variant="h1" component="h2" gutterBottom>
-                        RecipEase
-                    </Typography>
                     <form className="loginBox">
                             <div className={this.state.errorMessage? "loginError": null}>
                                 {this.state.errorMessage}
