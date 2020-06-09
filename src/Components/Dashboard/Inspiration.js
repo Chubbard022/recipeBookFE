@@ -19,9 +19,8 @@ class Inspiration extends Component{
                 InspirationRecipes: [...this.props.inspirationRecipes]
             })
         }
-    handleDropDown = (e,item) =>{
-        e.preventDefault()
-        console.log("item")
+    handleDropDown = (item) =>{
+        console.log(item)
     }       
 
 
@@ -43,7 +42,7 @@ class Inspiration extends Component{
                                 {/* <p>Ingredients : {item.ingredients}</p>
                                 <p>Instructions : {item.instructions}</p> */}
                                 <button 
-                                    onClick={this.handleDropDown(e,item)}
+                                    onClick={()=>this.handleDropDown(item)}
                                 >V</button>
                             </div>)
                     })}
