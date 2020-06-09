@@ -235,6 +235,9 @@
 .inspoRecipe p{
   margin: 5%;
 }
+.inspoRecipe img{
+  width: 100%;
+}
 .inspoRecipeContainer{
   display: flex;
   flex-wrap: wrap;
