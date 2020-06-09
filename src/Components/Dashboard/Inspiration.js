@@ -8,20 +8,24 @@ class Inspiration extends Component{
     constructor(){
         super()
         this.state = {
-            recipe: [],
-            olderInspirationRecipes: []
+            InspirationRecipes: []
         }
     }
 
     componentWillMount(){
-        
+            this.props.getInspiration()
+            this.setState({
+                ...this.state,
+                InspirationRecipes: [...this.props.inspirationRecipes]
+            })
         }
+    handleDropDown = (item) =>{
+        console.log(item)
+    }       
 
-    test = () =>{
-        this.props.getInspiration()
-    }
 
     render(){
+        console.log(this.state)
         return(
             <div> 
                 <Button 
@@ -29,8 +33,19 @@ class Inspiration extends Component{
                     variant="contained" 
                     color="primary" 
                 >Back To Dashboard</Button>
-                <div>
-                    <button onClick={this.test}>TEST</button>
+                <div className="inspoRecipeContainer">
+                    {this.state.InspirationRecipes.map((item,index)=>{
+                        return(
+                            <div key={index} className="inspoRecipe">
+                                <img src={item.image} alt={item.name}/>
+                                <p>{item.name}</p>
+                                {/* <p>Ingredients : {item.ingredients}</p>
+                                <p>Instructions : {item.instructions}</p> */}
+                                <button 
+                                    onClick={()=>this.handleDropDown(item)}
+                                >V</button>
+                            </div>)
+                    })}
                 </div>
             </div>
         )

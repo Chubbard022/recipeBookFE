@@ -222,3 +222,23 @@
 .editRecipeInput.editRecipeLastInput{
   margin-left: -0.5%;
 }
+
+/* INSPERATIONAL RECIPES */
+
+.inspoRecipe{
+  border: 2px solid black;
+  width: 30%;
+  margin: 0.5%;
+  border-radius: 3px;
+  box-shadow: 3px 3px 3px rgb(167, 163, 163)
+}
+.inspoRecipe p{
+  margin: 5%;
+}
+.inspoRecipe img{
+  width: 100%;
+}
+.inspoRecipeContainer{
+  display: flex;
+  flex-wrap: wrap;
+}

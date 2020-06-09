@@ -1,4 +1,5 @@
 import axios from "axios"
+import Inspiration from "../Components/Dashboard/Inspiration";
 require('dotenv').config()
 
 export const 
@@ -17,26 +18,38 @@ export const getInspiration = () => dispatch =>{
     axios
         .get(`${RECIPE}`)
             .then(res=>{
+                console.log("_________",res)
+                console.log(res.data.recipes[0].image)
                 let ingredients = []
-                let ingredientList = Object.values(res.data.recipes[0].extendedIngredients)
+                const ingredientList = Object.values(res.data.recipes[0].extendedIngredients)
+                const image = res.data.recipes[0].image
 
                 ingredientList.map(item=> ingredients.push(item.original))
-                let finalIngredientList = ingredients.join()
+                const finalIngredientList = ingredients.join()
 
                 let newRecipe = {
                     instructions: res.data.recipes[0].instructions,
                     name: res.data.recipes[0].title,
-                    ingredients: finalIngredientList
+                    ingredients: finalIngredientList,
+                    image: image
                 }
                 
                 axios
+                //Putting recipe into the backend for persistence
                     .post(`${URL}/inspiration/newrecipe`,newRecipe)
-                        .then(res=>{
-                            dispatch({
-                                type: GET_INSPIRATION_SUCCESS,
-                                payload: newRecipe
-                            })
-                            console.log("***",res)
+                        .then(()=>{
+                            axios
+                                .get(`${URL}/inspiration`)
+                                    .then(res=>{
+                                        dispatch({
+                                            type: GET_INSPIRATION_SUCCESS,
+                                            payload: res.data
+                                        })
+                                    })
+                                    .catch(err=>{
+                                        console.log("ERR")
+                                    })
+
                         })
             })
             .catch(err=>{
