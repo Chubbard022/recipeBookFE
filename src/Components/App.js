@@ -3,7 +3,7 @@ import "../styles.css";
 import { BrowserRouter as Router, Route,Switch} from 'react-router-dom';
 
 import Home from "./Login/Home"
-import {LandingPage} from "../Components/LandingPage"
+import LandingPage from "../Components/LandingPage"
 import Dashboard from "./Dashboard/Dashboard"
 import Inspiration from "./Dashboard/Inspiration"
 import RecipeMaker from "./Dashboard/RecipeMaker"

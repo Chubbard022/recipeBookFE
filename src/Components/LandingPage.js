@@ -1,31 +1,85 @@
-import React from "react"
+import React,{Component} from "react"
 import Typography from '@material-ui/core/Typography';
+import {TextField} from "../CustomElements/Textfield"
 import Button from "@material-ui/core/Button"
+import * as image from "../images/edgar-castrejon-bG5rhvRH0JM-unsplash.jpg"
+import {register} from "../Actions/index"
+import {connect} from "react-redux"
 import "../styles.css"
 
 
-export const LandingPage = (props) =>{
-    const handleRedirect = () =>{
-        props.history.push('/login')
-    }
-    return(
-        <div>
-            <Typography variant="h1" component="h2" gutterBottom>
-                RecipEase
-            </Typography>
-            <div>
-                {/* Add picture here */}
-                <button onClick={handleRedirect}>Create Acdcount</button>
-                <button>Learn more about RecipEase</button>
-            </div>
-            <div>
-                <h3>About RecipEase</h3>
-                {/* Make display showing what is included in app */}
-            </div>
-            <div>
-                BOTTOM OF APP, other links
-            </div>
-        </div>
-    )
-}
 
+class LandingPage extends Component {
+    constructor(props){
+        super()
+        this.state={
+            register: {
+                username: "",
+                password: ""
+            }
+        }
+
+    }
+    handleChange = (e) =>{
+        this.setState({
+            register:{
+                ...this.state.register,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+    render(){
+        return(
+            <div>
+                <div className="landingPageTopBanner">
+                    <div>
+                        <Typography className="landingPageName" variant="h3" gutterBottom style={{color:"white"}}>
+                            RecipEase
+                        </Typography>
+                        
+                        <form className="registerBox">
+                        <p>Register A new Account</p>
+                                <TextField  
+                                    required id="standard-required" 
+                                    placeholder="Username" 
+                                    type="text"
+                                    name="username"
+                                    onChange={this.handleChange}
+                                />
+                                <br/>
+                                <TextField 
+                                    type="password" 
+                                    placeholder="Password" 
+                                    name="password"
+                                    onChange={this.handleChange}
+                                />
+                                <br/>
+                                <Button style={{fontSize: "22px", marginTop: "4%"}} 
+                                        variant="contained" color="primary" 
+                                        onClick={this.handleSubmit}>Submit</Button>
+                        </form>
+                    </div>
+                    <img className="landingPageImg" src={image} alt="two individuals cooking"/>
+                </div>
+  
+                <div>
+                    <h3>About RecipEase</h3>
+                    {/* Make display showing what is included in app */}
+                </div>
+                <div>
+                    BOTTOM OF APP, other links
+                </div>
+            </div>
+        )
+    }
+}
+const mapStateToProps = (state)=>({
+    errorMessage: state.error,
+    message: state.message
+})
+
+
+export default connect(
+    mapStateToProps,
+    {register}
+)(LandingPage)
