@@ -42,7 +42,7 @@ class Home extends Component{
     render(){
         return(
             <div className="loginScreen">
-                    <form className="loginBox">
+                    <form className="loginBox" styles={{paddingTop:"50%"}}>
                             <div className={this.state.errorMessage? "loginError": null}>
                                 {this.state.errorMessage}
                             </div>
@@ -62,7 +62,7 @@ class Home extends Component{
                             />
                             <br/>
                             <Button style={{fontSize: "22px", marginTop: "4%"}} variant="contained" color="primary" onClick={this.handleSubmit}>Submit</Button>
-                            <p style={{fontSize: "22px"}}>if not registered, please click 
+                            <p style={{fontSize: "22px",paddingTop:"2%"}}>if not registered, please click 
                                 <a className="registerRedirect" onClick={()=>this.props.history.push("/register")}> here</a>
                             </p>
                         </form> 
