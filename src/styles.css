@@ -34,8 +34,8 @@
 }
 .registerBox{
   border:1px solid black;
-  width: 20%;
-  height: 30vh;
+    width: 15%;
+  height: 25vh;
   margin: 0 auto;
   padding: 1%;
   border-radius: 2%;
@@ -44,9 +44,12 @@
   left: 1%;
   position: absolute;
   background-color: rgb(255, 255, 255);
-  padding-top: 7%;
+  padding-top: 2%;
 }
-
+.registerBoxText{
+  font-weight: 900;
+  padding-bottom: 20%;
+}
 
 /* DASHBOARD */
 
@@ -96,7 +99,8 @@
 
 /* HOME */
 .loginScreen{
-  margin: 8% auto
+  margin: 8% auto;
+  padding-top:10%;
 }
 
 .loginBox{
@@ -104,6 +108,8 @@
   width: 30%;
   margin: 0 auto;
   padding: 1%;
+  padding-top:5%;
+  padding-block-end: 5%;
   border-radius: 2%;
   box-shadow: 3px 3px 3px rgb(167, 163, 163)
 }
