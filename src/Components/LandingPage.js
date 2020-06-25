@@ -20,6 +20,9 @@ class LandingPage extends Component {
         }
 
     }
+    handleRedirect = () =>{
+        this.props.history.push("/login")
+    }
     handleChange = (e) =>{
         this.setState({
             register:{
@@ -38,7 +41,7 @@ class LandingPage extends Component {
                         </Typography>
                         
                         <form className="registerBox">
-                        <p>Register A new Account</p>
+                            <h2 className="registerBoxText">Register A new Account</h2>
                                 <TextField  
                                     required id="standard-required" 
                                     placeholder="Username" 
@@ -46,7 +49,6 @@ class LandingPage extends Component {
                                     name="username"
                                     onChange={this.handleChange}
                                 />
-                                <br/>
                                 <TextField 
                                     type="password" 
                                     placeholder="Password" 
@@ -54,9 +56,14 @@ class LandingPage extends Component {
                                     onChange={this.handleChange}
                                 />
                                 <br/>
-                                <Button style={{fontSize: "22px", marginTop: "4%"}} 
-                                        variant="contained" color="primary" 
-                                        onClick={this.handleSubmit}>Submit</Button>
+                                <div>
+                                    <Button style={{fontSize: "17px", marginTop: "8%", boxSizing:" border-box"}} 
+                                            variant="contained" color="primary" 
+                                            onClick={this.handleSubmit}>Submit</Button>
+                                    <Button style={{fontSize: "17px", marginTop: "8%", boxSizing:" border-box"}} 
+                                            variant="contained" color="primary" 
+                                            onClick={this.handleRedirect}>Already Have Account</Button>
+                                </div>
                         </form>
                     </div>
                     <img className="landingPageImg" src={image} alt="two individuals cooking"/>
