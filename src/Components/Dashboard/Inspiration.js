@@ -12,7 +12,7 @@ class Inspiration extends Component{
         }
     }
 
-    componentWillMount(){
+    componentDidMount(){
             this.props.getInspiration()
             this.setState({
                 ...this.state,
