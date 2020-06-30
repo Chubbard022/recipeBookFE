@@ -15,6 +15,7 @@ const URL = "http://localhost:6500/api"
 
 export const register = creds => dispatch =>{
     dispatch({type: REGISTER})
+
     axios
     .post(`${URL}/register`,creds)
         .then(res=>{

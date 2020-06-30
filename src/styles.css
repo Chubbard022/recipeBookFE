@@ -50,6 +50,10 @@
   font-weight: 900;
   padding-bottom: 20%;
 }
+.landingPageButtons{
+  display: flex;
+  justify-content: space-around;
+}
 
 /* DASHBOARD */
 
@@ -286,4 +290,14 @@
 .inspoRecipeContainer{
   display: flex;
   flex-wrap: wrap;
+}
+
+
+/* SOCIAL PAGE */
+
+.user{
+  border:1px solid red;
+  margin:2% auto;
+  width: 80%;
+  padding:3%;
 }

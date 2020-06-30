@@ -28,6 +28,11 @@ import {
     GET_INSPIRATION_SUCCESS,
     GET_INSPIRATION_FAILURE
 } from "../Actions/inspiration"
+import {
+    GET_SOCIAL,
+    GET_SOCIAL_SUCCESS,
+    GET_SOCIAL_FAILURE
+} from "../Actions/social"
 
 const initialState = {
     registering: false,
@@ -45,7 +50,9 @@ const initialState = {
     token: null,
     recipes:[],
     username: "",
-    inspirationRecipes: []
+    inspirationRecipes: [],
+    userList: [],
+    fetchingUsers:null
 }
 
 export const reducer = (state=initialState,action) =>{
@@ -194,6 +201,23 @@ export const reducer = (state=initialState,action) =>{
             return{
                 ...state,
                 error: action.payload
+            }
+        case GET_SOCIAL:
+            return{
+                ...state,
+                error:null,
+                fetchingUsers:true
+            }
+        case GET_SOCIAL_SUCCESS:
+            return{
+                ...state,
+                userList: action.payload,
+                fetchingUsers:false
+            }
+        case GET_SOCIAL_FAILURE:
+            return{
+                ...state,
+                error:true
             }
         default:
             return state;
