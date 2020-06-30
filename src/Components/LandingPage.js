@@ -31,6 +31,11 @@ class LandingPage extends Component {
             }
         })
     }
+    handleSubmit = () =>{
+        console.log(this.state)
+        this.props.register(this.state.register)
+        this.props.history.push("/login")
+    }
     render(){
         return(
             <div>
@@ -56,11 +61,11 @@ class LandingPage extends Component {
                                     onChange={this.handleChange}
                                 />
                                 <br/>
-                                <div>
-                                    <Button style={{fontSize: "17px", marginTop: "8%", boxSizing:" border-box"}} 
+                                <div className="landingPageButtons">
+                                    <Button style={{fontSize: "14px", marginTop: "8%", boxSizing:" border-box"}} 
                                             variant="contained" color="primary" 
                                             onClick={this.handleSubmit}>Submit</Button>
-                                    <Button style={{fontSize: "17px", marginTop: "8%", boxSizing:" border-box"}} 
+                                    <Button style={{paddingRight: "3%",fontSize: "14px", marginTop: "8%", boxSizing:" border-box"}} 
                                             variant="contained" color="primary" 
                                             onClick={this.handleRedirect}>Already Have Account</Button>
                                 </div>
