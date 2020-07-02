@@ -31,9 +31,18 @@ export const getUserRecipes = (username) => dispatch =>{
     axios
     .get(`${URL}/social/${username}`)
         .then(resp=>{
-            console.log(resp)
+            let data = resp.data.map(recipe=>{
+                return [recipe.id,recipe.name,recipe.ingredients,recipe.instructions, recipe.username]
+            })
+            dispatch({
+                type: GET_SOCIAL_RECIPE_SUCCESS,
+                payload: data
+            })
         })
-    .then(err=>{
-        console.log(err)
+    .catch(err=>{
+        dispatch({
+            type: GET_SOCIAL_RECIPE_FAILURE
+        })
+        console.log("ERR")
     })
 }

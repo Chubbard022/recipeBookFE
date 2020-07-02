@@ -1,9 +1,10 @@
 import React, {Component} from "react"
 import Button from '@material-ui/core/Button';
 import {connect} from "react-redux"
+import Individual from "./Individual"
 import "./linksWithinDash.css"
 
-import {getOtherUsers} from "../../../Actions/social"
+import {getOtherUsers,getUserRecipes} from "../../../Actions/social"
 
 class Social extends Component{
 
@@ -11,7 +12,8 @@ class Social extends Component{
         super(props)
         this.myRef = React.createRef();
         this.state={
-            userList: []
+            userList: [],
+            clickedUser : false,
         }
     }
 
@@ -21,10 +23,14 @@ class Social extends Component{
             ...this.state,
             userList: this.props.userList
         })
-
     }
-    handleRedirectUserPage = (username) =>{
-        console.log(username)
+    handleRedirectUserPage = (e) =>{
+        let selectedUser = e.currentTarget.textContent
+        this.props.getUserRecipes(selectedUser)
+        this.setState({
+            ...this.state,
+            clickedUser: true
+        })
     }
   
 
@@ -36,26 +42,29 @@ class Social extends Component{
                     variant="contained" 
                     color="primary" 
                 >Back To Dashboard</Button>
-               <div>
-                   {this.state.userList.map((user,index)=>{
-                       let userName= user.username;
-                       return(
-                           <div className="user" key={index} onClick={ (userName) => this.handleRedirectUserPage(userName) }>
-                                <p>{userName}</p>
-                           </div>
-                       )
-                   })}
-               </div>
+                <div className={ this.state.clickedUser ? "vanish" : null}>
+                    {this.state.userList.map((user,index)=>{
+                        let userName= user.username;
+                        return(
+                            <div className="user" key={index} onClick={ this.handleRedirectUserPage }>
+                                    <p>{userName}</p>
+                            </div>
+                        )
+                    })}
+                </div>
+                <div className={ this.state.clickedUser ? null: "vanish"}>
+                    <Individual userListRecipe={this.props.userListRecipe}/>
+                </div>
             </div>
         )
     }
 }
 const mapStateToProps = (state)=>({
     userList: state.userList,
-    // userListRecipe: userListRecipe
+    userListRecipe: state.userListRecipe
 })
 
 export default connect(
     mapStateToProps,
-    {getOtherUsers}
+    {getOtherUsers,getUserRecipes}
 )(Social)
