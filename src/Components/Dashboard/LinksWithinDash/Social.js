@@ -1,9 +1,9 @@
 import React, {Component} from "react"
 import Button from '@material-ui/core/Button';
 import {connect} from "react-redux"
-import "../../styles.css"
+import "./linksWithinDash.css"
 
-import {getOtherUsers} from "../../Actions/social"
+import {getOtherUsers} from "../../../Actions/social"
 
 class Social extends Component{
 

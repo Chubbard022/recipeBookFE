@@ -1,5 +1,5 @@
 import axios from "axios"
-import Inspiration from "../Components/Dashboard/Inspiration";
+import Inspiration from "../Components/Dashboard/LinksWithinDash/Inspiration";
 require('dotenv').config()
 
 export const 

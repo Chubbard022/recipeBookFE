@@ -6,8 +6,8 @@ import Button from '@material-ui/core/Button';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
-import {createRecipe} from "../../Actions/recipe"
-import "../../styles.css"
+import {createRecipe} from "../../../Actions/recipe"
+import "./linksWithinDash.css"
 
 //overriding default theme 
 const theme = createMuiTheme({

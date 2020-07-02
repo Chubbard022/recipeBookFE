@@ -2,9 +2,9 @@ import React,{Component} from "react"
 import {connect} from "react-redux"
 import Button from "@material-ui/core/Button"
 
-import {getRecipes,editRecipe,deleteRecipe} from "../../Actions/recipe"
+import {getRecipes,editRecipe,deleteRecipe} from "../../../Actions/recipe"
 import EditUserAccount from "./EditUserAccount"
-import "../../styles.css"
+import "./linksWithinDash.css"
 
 
 
