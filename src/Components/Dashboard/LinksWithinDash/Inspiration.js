@@ -1,8 +1,8 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 import Button from "@material-ui/core/Button"
-import {getInspiration} from "../../Actions/inspiration"
-import "../../styles.css"
+import {getInspiration} from "../../../Actions/inspiration"
+import "./linksWithinDash.css"
 
 class Inspiration extends Component{
     constructor(){
