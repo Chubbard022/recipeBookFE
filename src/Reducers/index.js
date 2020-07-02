@@ -31,28 +31,33 @@ import {
 import {
     GET_SOCIAL,
     GET_SOCIAL_SUCCESS,
-    GET_SOCIAL_FAILURE
+    GET_SOCIAL_FAILURE,
+    GET_SOCIAL_RECIPE,
+    GET_SOCIAL_RECIPE_SUCCESS,
+    GET_SOCIAL_RECIPE_FAILURE
 } from "../Actions/social"
 
 const initialState = {
-    registering: false,
-    loggedIn: false,
-    loggingOut: false,
-    gettingRecipe: false,
-    addingRecipe:false,
+    fetchingUserRecipes:false,
+    fetchingRecipes: false,
     deletingRecipe: false,
     editingRecipe: false,
+    gettingRecipe: false,
+    fetchingUsers: false,
+    addingRecipe: false,
+    registering: false,
+    loggingOut: false,
+    signingUp: false,
+    loggedIn: false,
+    errorStatusCode: null,
     message: null,
     error: null,
-    errorStatusCode: null,
-    fetchingRecipes: false,
-    signingUp: false,
     token: null,
-    recipes:[],
     username: "",
     inspirationRecipes: [],
+    userListRecipe:[],
     userList: [],
-    fetchingUsers:null
+    recipes:[],
 }
 
 export const reducer = (state=initialState,action) =>{
@@ -218,6 +223,23 @@ export const reducer = (state=initialState,action) =>{
             return{
                 ...state,
                 error:true
+            }
+        case GET_SOCIAL_RECIPE:
+            return{
+                ...state,
+                error:null,
+                fetchingUserRecipes: true
+            }
+        case GET_SOCIAL_RECIPE_SUCCESS:
+            return{
+                ...state,
+                fetchingUserRecipes:false,
+                userListRecipe: action.payload
+            }
+        case GET_SOCIAL_RECIPE_FAILURE:
+            return{
+                ...state,
+                error: true
             }
         default:
             return state;
