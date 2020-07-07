@@ -12,7 +12,6 @@ class UserAccount extends Component{
         constructor(props){
             super(props)
             this.state={
-                personalRecipes: [],
                 recipeToEdit: {
                     id: 0,
                     name: "",

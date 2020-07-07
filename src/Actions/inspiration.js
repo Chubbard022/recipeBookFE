@@ -5,7 +5,10 @@ require('dotenv').config()
 export const 
     GET_INSPIRATION = "GET_INSPIRATION",
     GET_INSPIRATION_SUCCESS = "GET_INSPIRATION_SUCCESS",
-    GET_INSPIRATION_FAILURE = "GET_INSPIRATION_FAILURE"
+    GET_INSPIRATION_FAILURE = "GET_INSPIRATION_FAILURE",
+    GET_INSPIRATION_DROPDOWN = "GET_INSPIRATION_DROPDOWN",
+    GET_INSPIRATION_DROPDOWN_SUCCESS = "GET_INSPIRATION_DROPDOWN_SUCCESS",
+    GET_INSPIRATION_DROPDOWN_FAILURE = "GET_INSPIRATION_DROPDOWN_FAILURE"
 
 
 const RECIPE = `https://api.spoonacular.com/recipes/random?number=1&apiKey=${process.env.REACT_APP_SPOON_API}`
@@ -18,8 +21,6 @@ export const getInspiration = () => dispatch =>{
     axios
         .get(`${RECIPE}`)
             .then(res=>{
-                console.log("_________",res)
-                console.log(res.data.recipes[0].image)
                 let ingredients = []
                 const ingredientList = Object.values(res.data.recipes[0].extendedIngredients)
                 const image = res.data.recipes[0].image
@@ -31,7 +32,8 @@ export const getInspiration = () => dispatch =>{
                     instructions: res.data.recipes[0].instructions,
                     name: res.data.recipes[0].title,
                     ingredients: finalIngredientList,
-                    image: image
+                    image: image,
+                
                 }
                 
                 axios
@@ -41,9 +43,12 @@ export const getInspiration = () => dispatch =>{
                             axios
                                 .get(`${URL}/inspiration`)
                                     .then(res=>{
+                                        let updateList = res.data.map(item=>{
+                                            return {...item,clicked:false}
+                                        })
                                         dispatch({
                                             type: GET_INSPIRATION_SUCCESS,
-                                            payload: res.data
+                                            payload: updateList
                                         })
                                     })
                                     .catch(err=>{
@@ -58,4 +63,23 @@ export const getInspiration = () => dispatch =>{
                     payload: "ERROR: Failure to get new recipe"
                 })
             })
+}
+
+export const dropDownInspoRecipe = (recipe,recipeList) => (dispatch) =>{
+    dispatch({type:GET_INSPIRATION_DROPDOWN})
+    let updatedRecipe = {...recipe,clicked:!recipe.clicked}
+    let returnRecipeList = recipeList.map(r=>{
+        if(r.id === recipe.id){
+            r = updatedRecipe
+            return r
+        }
+        return r
+    })
+    dispatch({
+            type:GET_INSPIRATION_DROPDOWN_SUCCESS,
+            payload: returnRecipeList
+        })
+    if(recipe === undefined){
+        dispatch({type: GET_INSPIRATION_DROPDOWN_FAILURE})
+    }
 }
