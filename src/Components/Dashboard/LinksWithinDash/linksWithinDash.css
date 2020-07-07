@@ -97,3 +97,18 @@
     width: 80%;
     padding:3%;
   }
+  .userUsername:hover{
+    cursor: pointer;
+  }
+
+
+/* INDIVIDUAL */
+
+.userRecipe{
+  border: 1px solid black;
+  width: 50%;
+  margin: 3% auto;
+}
+.userRecipeDescription{
+  margin: 3%;
+}

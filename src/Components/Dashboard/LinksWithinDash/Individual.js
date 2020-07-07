@@ -1,15 +1,17 @@
 import React from "react"
+import "./linksWithinDash.css"
 
 
 function Individual(props){
-    console.log("*****",props)
     return(
         <div>
-            INDIVIDUAL
-            {props.userListRecipe.map(recipe=>{
+            {props.userListRecipe.map((recipe,index)=>{
                 return (
-                    <div>
-                        WORKING
+                    <div key={recipe[0]} className="userRecipe">
+                        <p className="userRecipeDescription">Recipe Name: {recipe[1]}</p>
+                        <p className="userRecipeDescription">Ingredients: {recipe[2]}</p>
+                        <p className="userRecipeDescription"> Instructions: {recipe[3]}</p>
+
                     </div>
                 )
             })}

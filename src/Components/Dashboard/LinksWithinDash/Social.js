@@ -43,11 +43,11 @@ class Social extends Component{
                     color="primary" 
                 >Back To Dashboard</Button>
                 <div className={ this.state.clickedUser ? "vanish" : null}>
-                    {this.state.userList.map((user,index)=>{
+                    {this.props.userList.map((user,index)=>{
                         let userName= user.username;
                         return(
                             <div className="user" key={index} onClick={ this.handleRedirectUserPage }>
-                                    <p>{userName}</p>
+                                    <p className="userUsername">{userName}</p>
                             </div>
                         )
                     })}
