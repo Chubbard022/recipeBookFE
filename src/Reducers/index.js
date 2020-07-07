@@ -26,7 +26,10 @@ import {
 import {
     GET_INSPIRATION,
     GET_INSPIRATION_SUCCESS,
-    GET_INSPIRATION_FAILURE
+    GET_INSPIRATION_FAILURE,
+    GET_INSPIRATION_DROPDOWN,
+    GET_INSPIRATION_DROPDOWN_SUCCESS,
+    GET_INSPIRATION_DROPDOWN_FAILURE
 } from "../Actions/inspiration"
 import {
     GET_SOCIAL,
@@ -39,6 +42,7 @@ import {
 
 const initialState = {
     fetchingUserRecipes:false,
+    inspirationDropDown:false,
     fetchingRecipes: false,
     deletingRecipe: false,
     editingRecipe: false,
@@ -206,6 +210,23 @@ export const reducer = (state=initialState,action) =>{
             return{
                 ...state,
                 error: action.payload
+            }
+        case GET_INSPIRATION_DROPDOWN:
+            return{
+                ...state,
+                error: null,
+                inspirationDropDown: true
+            }
+        case GET_INSPIRATION_DROPDOWN_SUCCESS:
+            return{
+                ...state,
+                inspirationRecipes: action.payload,
+                inspirationDropDown: false
+            }
+        case GET_INSPIRATION_DROPDOWN_FAILURE:
+            return{
+                ...state,
+                error:true
             }
         case GET_SOCIAL:
             return{
