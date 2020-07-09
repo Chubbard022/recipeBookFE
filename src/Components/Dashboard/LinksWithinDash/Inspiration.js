@@ -23,7 +23,6 @@ class Inspiration extends Component{
             })
         }
 
-
     render(){
         return(
             <div> 
@@ -38,10 +37,15 @@ class Inspiration extends Component{
                         return(
                             <div key={index} className="inspoRecipe">
                                 <img src={item.image} alt={item.name}/>
-                                <p>{item.name}</p>
-                                {item.clicked?<div><p>Ingredients {item.ingredients}</p>
-                                <p>Instructions  {item.instructions}</p></div>:null}
+                                <p className={item.clicked? "inspoTitleClicked" : "inspoTitle"}>{item.name}</p>
+                                {item.clicked?
+                                    <div>
+                                        <p>Ingredients {item.ingredients}</p>
+                                        <p>Instructions {item.instructions}</p>
+                                    </div>
+                                :null}
                                 <button 
+                                    className="InspoButton"
                                     onClick={()=>this.props.dropDownInspoRecipe(item,this.props.inspirationRecipes)}
                                 >V</button>
                             </div>)
