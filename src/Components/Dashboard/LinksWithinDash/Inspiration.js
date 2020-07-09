@@ -22,21 +22,6 @@ class Inspiration extends Component{
                 inspirationRecipeList: updatedList
             })
         }
-    // handleDropDown = (item) =>{
-    //     // let recipeClicked = this.state.inspirationRecipeList.map(recipe=>{
-    //     //     if(recipe.id === item.id){
-    //     //         recipe.clicked = !recipe.clicked
-    //     //     }
-    //     //     return recipe
-    //     // })
-        
-    //     // this.setState({
-    //     //     ...this.state,
-    //     //     [this.state.inspirationRecipeList] : recipeClicked
-    //     // })
-    //     console.log(item)
-    // }   
-
 
 
     render(){
