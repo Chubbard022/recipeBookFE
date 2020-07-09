@@ -14,7 +14,13 @@ export const
 const RECIPE = `https://api.spoonacular.com/recipes/random?number=1&apiKey=${process.env.REACT_APP_SPOON_API}`
 const URL = "http://localhost:6500/api"
 
-
+function removeHtmlTag(string){
+    if ((string===null) || (string===''))
+    return false;
+    else
+    string = string.toString();
+    return string.replace( /(<([^>]+)>)/ig, '');
+}
 
 export const getInspiration = () => dispatch =>{
     dispatch({type: GET_INSPIRATION})
@@ -27,15 +33,19 @@ export const getInspiration = () => dispatch =>{
 
                 ingredientList.map(item=> ingredients.push(item.original))
                 const finalIngredientList = ingredients.join()
+                let instructions = res.data.recipes[0].instructions
+
+                if(res.data.recipes[0].instructions.indexOf("<") != -1){
+                    instructions = removeHtmlTag(res.data.recipes[0].instructions)
+                }
 
                 let newRecipe = {
-                    instructions: res.data.recipes[0].instructions,
+                    instructions: instructions,
                     name: res.data.recipes[0].title,
                     ingredients: finalIngredientList,
                     image: image,
-                
                 }
-                
+                console.log(newRecipe.instructions)
                 axios
                 //Putting recipe into the backend for persistence
                     .post(`${URL}/inspiration/newrecipe`,newRecipe)

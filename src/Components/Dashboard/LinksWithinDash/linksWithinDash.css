@@ -1,14 +1,18 @@
 /* INSPERATIONAL RECIPES */
 
 .inspoRecipe{
-    border: 2px solid black;
-    width: 30%;
+    border: 1px solid lightgray;
+    width: 20%;
     margin: 0.5%;
     border-radius: 3px;
-    box-shadow: 3px 3px 3px rgb(167, 163, 163)
+    box-shadow: 3px 3px 3px rgb(167, 163, 163);
+    margin: 1%;  
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .inspoRecipe p{
     margin: 5%;
+    
   }
   .inspoRecipe img{
     width: 100%;
@@ -16,6 +20,31 @@
   .inspoRecipeContainer{
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
+
+  }
+  .inspoTitle{
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    box-sizing: border-box;
+    white-space: nowrap;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .inspoTitleClicked{
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+  }
+
+  .InspoButton{
+    background-color: #F50257;
+    height: 40px;
+    width: 40px;
+    color: white;
+    border-radius: 50%;
+    border: 1px solid red;
+    margin: 0 auto;
   }
 
 

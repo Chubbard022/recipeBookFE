@@ -22,22 +22,6 @@ class Inspiration extends Component{
                 inspirationRecipeList: updatedList
             })
         }
-    // handleDropDown = (item) =>{
-    //     // let recipeClicked = this.state.inspirationRecipeList.map(recipe=>{
-    //     //     if(recipe.id === item.id){
-    //     //         recipe.clicked = !recipe.clicked
-    //     //     }
-    //     //     return recipe
-    //     // })
-        
-    //     // this.setState({
-    //     //     ...this.state,
-    //     //     [this.state.inspirationRecipeList] : recipeClicked
-    //     // })
-    //     console.log(item)
-    // }   
-
-
 
     render(){
         return(
@@ -53,10 +37,15 @@ class Inspiration extends Component{
                         return(
                             <div key={index} className="inspoRecipe">
                                 <img src={item.image} alt={item.name}/>
-                                <p>{item.name}</p>
-                                {item.clicked?<div><p>Ingredients {item.ingredients}</p>
-                                <p>Instructions  {item.instructions}</p></div>:null}
+                                <p className={item.clicked? "inspoTitleClicked" : "inspoTitle"}>{item.name}</p>
+                                {item.clicked?
+                                    <div>
+                                        <p>Ingredients {item.ingredients}</p>
+                                        <p>Instructions {item.instructions}</p>
+                                    </div>
+                                :null}
                                 <button 
+                                    className="InspoButton"
                                     onClick={()=>this.props.dropDownInspoRecipe(item,this.props.inspirationRecipes)}
                                 >V</button>
                             </div>)
