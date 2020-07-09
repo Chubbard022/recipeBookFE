@@ -5,7 +5,9 @@
     width: 30%;
     margin: 0.5%;
     border-radius: 3px;
-    box-shadow: 3px 3px 3px rgb(167, 163, 163)
+    box-shadow: 3px 3px 3px rgb(167, 163, 163);
+    margin: 1%;
+    display: inline-block;
   }
   .inspoRecipe p{
     margin: 5%;
@@ -16,6 +18,7 @@
   .inspoRecipeContainer{
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
   }
 
 
