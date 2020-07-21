@@ -141,3 +141,11 @@
 .userRecipeDescription{
   margin: 3%;
 }
+
+
+/* Favoriting recipes */
+
+.favoriteRecipe{
+  border:1px solid red;
+  width:1%;
+}
