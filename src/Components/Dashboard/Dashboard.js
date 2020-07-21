@@ -1,6 +1,7 @@
 import React from "react"
 import {Link} from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
+import Favorited from "./moreComponents/Favorited"
 
 import SideBar from "./SideBar"
 import DashHeader from "./DashHeader"
@@ -17,6 +18,7 @@ const Dashboard = (props) =>{
                 <div className="dashboardMain">
                     <SideBar />
                         <div className="dashboardComp">
+                            <Favorited />
                             <div className="dashboardLayer">
                                 <div className="DashboardBlock">
                                     <Link className="link" to="/account"> 
