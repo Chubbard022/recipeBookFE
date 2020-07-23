@@ -145,7 +145,7 @@
 
 /* Favoriting recipes */
 
-.favoriteRecipe{
-  border:1px solid red;
-  width:1%;
+#favoriteRecipe{
+  border:1px solid green;
+  width:50px;
 }

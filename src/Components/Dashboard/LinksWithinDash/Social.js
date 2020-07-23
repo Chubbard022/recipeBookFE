@@ -10,7 +10,6 @@ class Social extends Component{
 
     constructor(props){
         super(props)
-        this.myRef = React.createRef();
         this.state={
             userList: [],
             clickedUser : false,
