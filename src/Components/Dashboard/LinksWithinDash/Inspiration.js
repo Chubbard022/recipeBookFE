@@ -2,7 +2,9 @@ import React, {Component} from "react"
 import {connect} from "react-redux"
 import Button from "@material-ui/core/Button"
 import {getInspiration,dropDownInspoRecipe} from "../../../Actions/inspiration"
+import {favoriteRecipe,checkIfExists} from "../../../Actions/addFavorite"
 import "./linksWithinDash.css"
+import Favorited from "./Favorited"
 
 class Inspiration extends Component{
     constructor(){
@@ -23,6 +25,17 @@ class Inspiration extends Component{
             })
         }
 
+    handleFavoriting = (recipe) =>{
+        console.log(recipe)
+        console.log(this.props.favoriteRecipe(recipe))
+        
+        // if(!checkRecipe){
+        //     this.props.favoriteRecipe(recipe)
+        // }else{
+        //     console.log("**ALREADY EXISTS**")
+        // }
+    }
+
     render(){
         return(
             <div> 
@@ -42,6 +55,9 @@ class Inspiration extends Component{
                                     <div>
                                         <p>Ingredients {item.ingredients}</p>
                                         <p>Instructions {item.instructions}</p>
+                                        <div onClick={()=>this.handleFavoriting(item)}>
+                                            <Favorited />
+                                        </div>
                                     </div>
                                 :null}
                                 <button 
@@ -62,5 +78,5 @@ const mapStateToProps = (state) =>({
 
 export default connect(
     mapStateToProps,
-    {getInspiration,dropDownInspoRecipe}
+    {getInspiration,dropDownInspoRecipe,favoriteRecipe,checkIfExists}
 )(Inspiration)

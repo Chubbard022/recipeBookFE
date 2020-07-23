@@ -78,9 +78,7 @@ class LandingPage extends Component {
                     <h3>About RecipEase</h3>
                     {/* Make display showing what is included in app */}
                 </div>
-                <div>
-                    BOTTOM OF APP, other links
-                </div>
+                <div>Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
             </div>
         )
     }
