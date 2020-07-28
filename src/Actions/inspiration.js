@@ -45,7 +45,6 @@ export const getInspiration = () => dispatch =>{
                     ingredients: finalIngredientList,
                     image: image,
                 }
-                console.log(newRecipe.instructions)
                 axios
                 //Putting recipe into the backend for persistence
                     .post(`${URL}/inspiration/newrecipe`,newRecipe)

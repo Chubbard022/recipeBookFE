@@ -1,6 +1,5 @@
 import React, {Component} from "react"
 import star from "../../../images/star.png"
-import {connect} from "react-redux"
 import favorite from "../../../images/favorite.png"
 import "../LinksWithinDash/linksWithinDash.css"
 
@@ -22,13 +21,6 @@ class Favorited extends Component{
         )
     }
 }
-const mapStateToProps = (state) =>({
-
-})
-
-export default connect (
-    mapStateToProps,
-    {}
-)(Favorited)
+export default Favorited
 
 //instead of local state, call the getFavorite and see if favorite is true or not for image

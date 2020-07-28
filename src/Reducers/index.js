@@ -48,7 +48,10 @@ import{
     GET_FAVORITE_FAILURE,
     DELETE_FAVORITE,
     DELETE_FAVORITE_SUCCESS,
-    DELETE_FAVORITE_FAILURE
+    DELETE_FAVORITE_FAILURE,
+    CHECK_RECIPE,
+    CHECK_RECIPE_SUCCESS,
+    CHECK_RECIPE_FAILURE
 } from "../Actions/addFavorite"
 
 const initialState = {
@@ -65,6 +68,8 @@ const initialState = {
     loggingOut: false,
     signingUp: false,
     loggedIn: false,
+    checking:false,
+    found:false,
     errorStatusCode: null,
     message: null,
     error: null,
@@ -322,6 +327,23 @@ export const reducer = (state=initialState,action) =>{
                 favorited:action.payload
             }
         case DELETE_FAVORITE_FAILURE:
+            return{
+                ...state,
+                error:true
+            }
+        case CHECK_RECIPE:
+            return{
+                ...state,
+                error:null,
+                checking: true
+            }
+        case CHECK_RECIPE_SUCCESS:
+            return{
+                ...state,
+                checking:false,
+                found: action.payload
+            }
+        case CHECK_RECIPE_FAILURE:
             return{
                 ...state,
                 error:true

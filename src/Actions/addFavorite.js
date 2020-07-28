@@ -10,12 +10,12 @@ export const
     UPDATE_FAVORITE = "UPDATE_FAVORITE",
     UPDATE_FAVORITE_SUCCESS = "UPDATE_FAVORITE_SUCCESS",
     UPDATE_FAVORITE_FAILURE = "UPDATE_FAVORITE_FAILURE",
+    DELETE_FAVORITE = "DELETE_FAVORITE",
+    DELETE_FAVORITE_SUCCESS = "DELETE_FAVORITE_SUCCESS",
+    DELETE_FAVORITE_FAILURE = "DELETE_FAVORITE_FAILURE",
     CHECK_RECIPE = "CHECK_RECIPE",
     CHECK_RECIPE_SUCCESS = "CHECK_RECIPE_SUCCESS",
     CHECK_RECIPE_FAILURE = "CHECK_RECIPE_FAILURE"
-    DELETE_FAVORITE = "DELETE_FAVORITE",
-    DELETE_FAVORITE_SUCCESS = "DELETE_FAVORITE_SUCCESS",
-    DELETE_FAVORITE_FAILURE = "DELETE_FAVORITE_FAILURE"
 
 
 const URL = "http://localhost:6500/api"
@@ -34,7 +34,7 @@ export const favoriteRecipe = (recipe) => dispatch => {
         console.log("FAVORITE RESP**__",resp)
         dispatch({
             type: FAVORITE_SUCCESS,
-            payload: resp.data
+            payload: recipe
         })
     })
     .catch(err=>{
@@ -81,25 +81,25 @@ export const removeFavorite = (recipe) => dispatch =>{
             })
 }
 
-// export const checkIfExists = (checkRecipe) => (dispatch) => {
-//     dispatch({type: CHECK_RECIPE})
-//     axios.get(`http://localhost:6500/api/favorited`)
-//         .then(resp=>{
-//             console.log("FAVORITE RESP**__",resp)
-//             dispatch({
-//                 type: CHECK_RECIPE_SUCCESS,
-//                 payload: resp.data
-//             })
-//             // for(let i=0; i< resp.data.length; i++){
-//             //     if(checkRecipe.name === resp.data[i].name){
-//             //         console.log("____IN LIST___")
-//             //     }
-//             // }
-//                 favoriteRecipe(checkRecipe)
-//         })
-//         .catch(err=>{
-//                 dispatch({type: CHECK_RECIPE_FAILURE,
-//                 payload: "ERR: Failure to favorite recipe"
-//             })
-//         })
-// }
+export const checkIfExists = (checkRecipe) => (dispatch) => {
+    dispatch({type: CHECK_RECIPE})
+    axios
+    .get(`${URL}/favorited`)
+        .then(resp=>{
+            let foundRecipe = false
+            for(let i=0; i < resp.data.length; i++){
+                if(resp.data[i].name === checkRecipe.name){
+                    foundRecipe = true
+                }
+            }
+            dispatch({
+                type: CHECK_RECIPE_SUCCESS,
+                payload: foundRecipe
+            })
+        })
+        .catch(err=>{
+                dispatch({type: CHECK_RECIPE_FAILURE,
+                payload: "ERR: Failure to favorite recipe"
+            })
+        })
+}
