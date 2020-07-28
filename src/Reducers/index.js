@@ -46,9 +46,6 @@ import{
     GET_FAVORITE,
     GET_FAVORITE_SUCCESS,
     GET_FAVORITE_FAILURE,
-    UPDATE_FAVORITE,
-    UPDATE_FAVORITE_SUCCESS,
-    UPDATE_FAVORITE_FAILURE,
     DELETE_FAVORITE,
     DELETE_FAVORITE_SUCCESS,
     DELETE_FAVORITE_FAILURE
@@ -57,6 +54,7 @@ import{
 const initialState = {
     fetchingUserRecipes:false,
     inspirationDropDown:false,
+    favoritingRecipe:false,
     fetchingRecipes: false,
     deletingRecipe: false,
     editingRecipe: false,
@@ -74,6 +72,7 @@ const initialState = {
     username: "",
     inspirationRecipes: [],
     userListRecipe:[],
+    favorited:[],
     userList: [],
     recipes:[],
 }
@@ -275,6 +274,57 @@ export const reducer = (state=initialState,action) =>{
             return{
                 ...state,
                 error: true
+            }
+        case START_FAVORITE:
+            return{
+                ...state,
+                error: null,
+                favoritingRecipe:true
+            }
+        case FAVORITE_SUCCESS:
+            state.favorited.push(action.payload)
+            return{
+                ...state,
+                favoritingRecipe:false 
+            }
+        case FAVORITE_FAILURE:
+            return{
+                ...state,
+                error: true
+            }
+        case GET_FAVORITE:
+            return{
+                ...state,
+                error:null,
+                favoritingRecipe:true
+            }
+        case GET_FAVORITE_SUCCESS:
+            return{
+                ...state,
+                favoritingRecipe:false,
+                favorited: action.payload
+            }
+        case GET_FAVORITE_FAILURE:
+            return{
+                ...state,
+                error:true
+            }
+        case DELETE_FAVORITE:
+            return{
+                ...state,
+                error:null,
+                deletingRecipe:true
+            }
+        case DELETE_FAVORITE_SUCCESS:
+            return{
+                ...state,
+                deletingRecipe:false,
+                favorited:action.payload
+            }
+        case DELETE_FAVORITE_FAILURE:
+            return{
+                ...state,
+                error:true
             }
         default:
             return state;
