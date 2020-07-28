@@ -26,14 +26,20 @@ class Inspiration extends Component{
         }
 
     handleFavoriting = (recipe) =>{
-        console.log(recipe)
-        console.log(this.props.favoriteRecipe(recipe))
+        let newFavoritedRecipe = {
+            name: recipe.name,
+            instructions: recipe.instructions,
+            ingredients: recipe.ingredients,
+            username: this.props.username,
+            favorited: true
+        }
+        this.props.checkIfExists(recipe)
+        console.log("**__**",this.props.found)
         
-        // if(!checkRecipe){
-        //     this.props.favoriteRecipe(recipe)
-        // }else{
-        //     console.log("**ALREADY EXISTS**")
-        // }
+
+
+       //this.props.favoriteRecipe(newFavoritedRecipe)
+        
     }
 
     render(){
@@ -56,7 +62,7 @@ class Inspiration extends Component{
                                         <p>Ingredients {item.ingredients}</p>
                                         <p>Instructions {item.instructions}</p>
                                         <div onClick={()=>this.handleFavoriting(item)}>
-                                            <Favorited />
+                                            <Favorited/>
                                         </div>
                                     </div>
                                 :null}
@@ -73,7 +79,9 @@ class Inspiration extends Component{
 }
 
 const mapStateToProps = (state) =>({
-    inspirationRecipes: state.inspirationRecipes
+    inspirationRecipes: state.inspirationRecipes,
+    username: state.username,
+    found: state.found
 })
 
 export default connect(
