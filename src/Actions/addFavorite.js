@@ -21,27 +21,41 @@ export const
 const URL = "http://localhost:6500/api"
 
 
+ async function checkRecipe (recipe){
+    let checkRecipe = false;
+
+        try{
+            let response = await axios.get(`${URL}/favorited`)
+            for(let i=0; i < response.data.length;i++){
+                if(response.data[i].name === recipe.name){
+                    checkRecipe =  true
+                }
+            }
+        }catch(err){
+            console.log("ERR",err)
+        }
+        return true
+}
 
 
 
-
-export const favoriteRecipe = (recipe) => dispatch => {
-    console.log("***",recipe)
+export const favoriteRecipe = (recipe) => async (dispatch) => {
     dispatch({type: START_FAVORITE})
-    axios
-    .post(`${URL}/favorited`,recipe)
-    .then(resp=>{
-        console.log("FAVORITE RESP**__",resp)
-        dispatch({
-            type: FAVORITE_SUCCESS,
-            payload: recipe
-        })
-    })
-    .catch(err=>{
-        dispatch({type: FAVORITE_FAILURE,
-            payload: "ERR: Failure to favorite recipe"
-        })
-    })
+    let test = await checkRecipe(recipe)
+    console.log(test)
+    // axios
+    // .post(`${URL}/favorited`,recipe)
+    // .then(resp=>{
+    //     dispatch({
+    //         type: FAVORITE_SUCCESS,
+    //         payload: recipe
+    //     })
+    // })
+    // .catch(err=>{
+    //     dispatch({type: FAVORITE_FAILURE,
+    //         payload: "ERR: Failure to favorite recipe"
+    //     })
+    // })
 }
 
 export const getFavorite = () => dispatch =>{
@@ -81,25 +95,26 @@ export const removeFavorite = (recipe) => dispatch =>{
             })
 }
 
-export const checkIfExists = (checkRecipe) => (dispatch) => {
-    dispatch({type: CHECK_RECIPE})
-    axios
-    .get(`${URL}/favorited`)
-        .then(resp=>{
-            let foundRecipe = false
-            for(let i=0; i < resp.data.length; i++){
-                if(resp.data[i].name === checkRecipe.name){
-                    foundRecipe = true
-                }
-            }
-            dispatch({
-                type: CHECK_RECIPE_SUCCESS,
-                payload: foundRecipe
-            })
-        })
-        .catch(err=>{
-                dispatch({type: CHECK_RECIPE_FAILURE,
-                payload: "ERR: Failure to favorite recipe"
-            })
-        })
-}
+
+// export const checkIfExists = (checkRecipe) => (dispatch) => {
+//     dispatch({type: CHECK_RECIPE})
+//     axios
+//     .get(`${URL}/favorited`)
+//         .then(resp=>{
+//             let foundRecipe = false
+//             for(let i=0; i < resp.data.length; i++){
+//                 if(resp.data[i].name === checkRecipe.name){
+//                     foundRecipe = true
+//                 }
+//             }
+//             dispatch({
+//                 type: CHECK_RECIPE_SUCCESS,
+//                 payload: foundRecipe
+//             })
+//         })
+//         .catch(err=>{
+//                 dispatch({type: CHECK_RECIPE_FAILURE,
+//                 payload: "ERR: Failure to favorite recipe"
+//             })
+//         })
+// }

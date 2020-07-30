@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import {connect} from "react-redux"
 import Button from "@material-ui/core/Button"
 import {getInspiration,dropDownInspoRecipe} from "../../../Actions/inspiration"
-import {favoriteRecipe,checkIfExists} from "../../../Actions/addFavorite"
+import {favoriteRecipe} from "../../../Actions/addFavorite"
 import "./linksWithinDash.css"
 import Favorited from "./Favorited"
 
@@ -33,9 +33,7 @@ class Inspiration extends Component{
             username: this.props.username,
             favorited: true
         }
-        this.props.checkIfExists(recipe)
-        console.log("**__**",this.props.found)
-        
+        this.props.favoriteRecipe(newFavoritedRecipe)
 
 
        //this.props.favoriteRecipe(newFavoritedRecipe)
@@ -86,5 +84,5 @@ const mapStateToProps = (state) =>({
 
 export default connect(
     mapStateToProps,
-    {getInspiration,dropDownInspoRecipe,favoriteRecipe,checkIfExists}
+    {getInspiration,dropDownInspoRecipe,favoriteRecipe}
 )(Inspiration)
