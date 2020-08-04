@@ -25,20 +25,6 @@ class Inspiration extends Component{
             })
         }
 
-    handleFavoriting = (recipe) =>{
-        let newFavoritedRecipe = {
-            name: recipe.name,
-            instructions: recipe.instructions,
-            ingredients: recipe.ingredients,
-            username: this.props.username,
-            favorited: true
-        }
-        this.props.favoriteRecipe(newFavoritedRecipe)
-
-
-       //this.props.favoriteRecipe(newFavoritedRecipe)
-        
-    }
 
     render(){
         return(
@@ -59,9 +45,7 @@ class Inspiration extends Component{
                                     <div>
                                         <p>Ingredients {item.ingredients}</p>
                                         <p>Instructions {item.instructions}</p>
-                                        <div onClick={()=>this.handleFavoriting(item)}>
-                                            <Favorited/>
-                                        </div>
+                                            <Favorited recipe={item}/>
                                     </div>
                                 :null}
                                 <button 

@@ -34,28 +34,35 @@ const URL = "http://localhost:6500/api"
         }catch(err){
             console.log("ERR",err)
         }
-        return true
+        return checkRecipe
 }
 
 
 
-export const favoriteRecipe = (recipe) => async (dispatch) => {
+export const favoriteRecipe = (recipe) => (dispatch) => {
     dispatch({type: START_FAVORITE})
-    let test = await checkRecipe(recipe)
-    console.log(test)
-    // axios
-    // .post(`${URL}/favorited`,recipe)
-    // .then(resp=>{
-    //     dispatch({
-    //         type: FAVORITE_SUCCESS,
-    //         payload: recipe
-    //     })
-    // })
-    // .catch(err=>{
-    //     dispatch({type: FAVORITE_FAILURE,
-    //         payload: "ERR: Failure to favorite recipe"
-    //     })
-    // })
+    axios
+    .post(`${URL}/favorited`,recipe)
+    .then(resp=>{
+        axios
+            .put(`${URL}/inspiration/${recipe.id}`)
+                .then(res=>{
+                    dispatch({
+                        type: FAVORITE_SUCCESS,
+                        payload: recipe
+                    })
+                })
+                .catch(err=>{
+                    dispatch({type: FAVORITE_FAILURE,
+                        payload: "ERR: Failure to favorite recipe"
+                    })
+                })
+    })
+    .catch(err=>{
+        dispatch({type: FAVORITE_FAILURE,
+            payload: "ERR: Failure to favorite recipe"
+        })
+    })
 }
 
 export const getFavorite = () => dispatch =>{
@@ -95,26 +102,3 @@ export const removeFavorite = (recipe) => dispatch =>{
             })
 }
 
-
-// export const checkIfExists = (checkRecipe) => (dispatch) => {
-//     dispatch({type: CHECK_RECIPE})
-//     axios
-//     .get(`${URL}/favorited`)
-//         .then(resp=>{
-//             let foundRecipe = false
-//             for(let i=0; i < resp.data.length; i++){
-//                 if(resp.data[i].name === checkRecipe.name){
-//                     foundRecipe = true
-//                 }
-//             }
-//             dispatch({
-//                 type: CHECK_RECIPE_SUCCESS,
-//                 payload: foundRecipe
-//             })
-//         })
-//         .catch(err=>{
-//                 dispatch({type: CHECK_RECIPE_FAILURE,
-//                 payload: "ERR: Failure to favorite recipe"
-//             })
-//         })
-// }

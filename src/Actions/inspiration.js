@@ -43,6 +43,7 @@ export const getInspiration = () => dispatch =>{
                     instructions: instructions,
                     name: res.data.recipes[0].title,
                     ingredients: finalIngredientList,
+                    favorited:false,
                     image: image,
                 }
                 axios

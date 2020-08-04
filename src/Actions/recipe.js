@@ -35,8 +35,10 @@ export const getRecipes = () => dispatch =>{
                 })
             })
 }
-export const createRecipe = (newRecipe) => dispatch =>{
+export const createRecipe = (recipe) => dispatch =>{
     dispatch({type:CREATE_RECIPE})
+    let newRecipe = {...recipe,favorited:false} 
+    console.log("****",newRecipe)
     axios
         .post(`${URL}/recipes`,newRecipe)
             .then(res=>{
