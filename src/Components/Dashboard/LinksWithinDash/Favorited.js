@@ -16,18 +16,18 @@ class Favorited extends Component{
     }
 
     handleFavoriting = (recipe) =>{
+        console.log("_________",recipe)
         let newFavoritedRecipe = {
-            name: recipe.name,
+            id: recipe.id,
+            image: recipe.image,
             instructions: recipe.instructions,
+            name: recipe.name,
             ingredients: recipe.ingredients,
             username: this.props.username,
-            favorited: true
+            favorited: !recipe.favorited
         }
-        // if(recipe.favorited === true){
-        //     this.props.removeFavorite(recipe)
-        // }else{
-        // this.props.favoriteRecipe(newFavoritedRecipe)        
-        // }
+
+        this.props.favoriteRecipe(newFavoritedRecipe)        
         this.props.favoriteRecipe(newFavoritedRecipe)
         this.setState({favorited: !this.state.favorited})
     }
@@ -45,7 +45,7 @@ class Favorited extends Component{
 
 
     render(){
-        console.log(this.props.recipe)
+        // console.log(this.props.recipe)
         return(
             <img id="favoriteRecipe" onClick={()=>this.handleFavoriting(this.props.recipe)} src={this.state.favorited? favorite : star} alt="bordered star"/>
         )
