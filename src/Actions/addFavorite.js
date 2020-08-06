@@ -40,17 +40,26 @@ const URL = "http://localhost:6500/api"
 
 
 export const favoriteRecipe = (recipe) => (dispatch) => {
+
+    //destructuring recipe, and omitting certain k,v for objects sending to backend
+    let{id,...newFavRecipe} = recipe;
+    let{username,...updateInspo} = recipe;
+
     dispatch({type: START_FAVORITE})
     axios
-    .post(`${URL}/favorited`,recipe)
+    .post(`${URL}/favorited`,newFavRecipe)
     .then(resp=>{
         axios
-            .put(`${URL}/inspiration/${recipe.id}`)
+            .put(`${URL}/inspiration/${updateInspo.id}`,updateInspo)
                 .then(res=>{
-                    dispatch({
-                        type: FAVORITE_SUCCESS,
-                        payload: recipe
-                    })
+                    axios
+                        .get(`${URL}/inspiration/`)
+                            .then(resp=>{
+                                dispatch({
+                                    type: FAVORITE_SUCCESS,
+                                    payload: null
+                                })
+                            }).catch(err=>console.log(err))
                 })
                 .catch(err=>{
                     dispatch({type: FAVORITE_FAILURE,
@@ -70,7 +79,6 @@ export const getFavorite = () => dispatch =>{
     axios
     .get(`${URL}/favorited`)
     .then(resp=>{
-        console.log("FAVORITE RESP**__",resp)
         dispatch({
             type: GET_FAVORITE_SUCCESS,
             payload: resp.data
