@@ -1,9 +1,8 @@
 import React,{Component} from "react"
-import {TextField} from "../../CustomElements/Textfield"
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import {connect} from "react-redux"
 
+import {TextField,Form,PageTitle} from "../../CustomElements/Textfield"
 import {register} from "../../Actions/index"
 import "../../styles.css"
 
@@ -28,13 +27,14 @@ class Register extends Component{
     }
     handleSubmit = () =>{
         this.props.register(this.state.register)
-        this.props.history.push("/")
+        this.props.history.push("/login")
     }
 
     render(){
         return(
             <div className="registerPage">
-                <form className="registerBox">
+                <PageTitle>Register</PageTitle>
+                <Form>
                     <TextField  
                         required id="standard-required" 
                         placeholder="Username" 
@@ -51,7 +51,7 @@ class Register extends Component{
                     />
                     <br/>
                     <Button style={{fontSize: "22px", marginTop: "4%"}} variant="contained" color="primary" onClick={this.handleSubmit}>Submit</Button>
-                </form>
+                </Form>
             </div>
         )
     }
