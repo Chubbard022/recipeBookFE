@@ -1,10 +1,8 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
-
-import {TextField} from "../../CustomElements/Textfield"
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
+import {TextField,Form,PageTitle} from "../../CustomElements/Textfield"
 import {login} from "../../Actions/index"
 import "../../styles.css"
 
@@ -41,8 +39,9 @@ class Home extends Component{
     }
     render(){
         return(
-            <div className="loginScreen">
-                    <form className="loginBox" styles={{paddingTop:"50%"}}>
+            <div >
+                <PageTitle>Login</PageTitle>
+                    <Form>
                             <div className={this.state.errorMessage? "loginError": null}>
                                 {this.state.errorMessage}
                             </div>
@@ -65,7 +64,7 @@ class Home extends Component{
                             <p style={{fontSize: "22px",paddingTop:"2%"}}>if not registered, please click 
                                 <a className="registerRedirect" onClick={()=>this.props.history.push("/register")}> here</a>
                             </p>
-                        </form> 
+                    </Form> 
             </div>
         )
     }

@@ -32,25 +32,18 @@
   opacity: 0.5;
 }
 .registerBox{
-  border:1px solid black;
-    width: 15%;
-  height: 25vh;
-  margin: 0 auto;
-  padding: 1%;
-  border-radius: 2%;
-  box-shadow: 3px 3px 3px rgb(167, 163, 163);
-  top: 20%;
-  left: 1%;
-  position: absolute;
-  background-color: rgb(255, 255, 255);
-  padding-top: 2%;
+  border: 1px solid black;
+    border-radius: 2%;
+    box-shadow: 3px 3px 3px rgb(167, 163, 163);
+    background-color: rgb(255, 255, 255);
+    margin: 0 auto;
 }
 .registerRedirect{
   color:blue;
   cursor: pointer;
 }
 .registerPage{
-  margin-top: 13.4%;
+
 }
 .registerBoxText{
   font-weight: 900;
