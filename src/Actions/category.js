@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export const
     GET_CATEGORY_START = "GET_CATEGORY_START",
     GET_CATEGORY_SUCCESS = "GET_CATEGORY_SUCCESS",
@@ -13,7 +12,7 @@ export const
     EDIT_CATEGORY_FAILURE = "EDIT_CATEGORY_FAILURE",
     DELETE_CATEGORY_START = "DELETE_CATEGORY_START",
     DELETE_CATEGORY_SUCCESS = "DELETE_CATEGORY_SUCCESS",
-    DELETE_CATEGORY_FAILURE =  "DELETE_CATEGORY_FAILURE"
+    DELETE_CATEGORY_FAILURE =  "DELETE_CATEGORY_FAILURE",
     FIND_CATEGORY_BYID_START = "FIND_CATEGORY_BYID_START",
     FIND_CATEGORY_BYID_SUCCESS = "FIND_CATEGORY_BYID_SUCCESS",
     FIND_CATEGORY_BYID_FAILURE = "FIND_CATEGORY_BYID_FAILURE",
@@ -21,7 +20,7 @@ export const
     FIND_CATEGORY_BYNAME_SUCCESS = "FIND_CATEGORY_BYNAME_SUCCESS",
     FIND_CATEGORY_BYNAME_FAILURE = "FIND_CATEGORY_BYNAME_FAILURE",
     FIND_RECIPE_IN_CATEGORY_START = "FIND_RECIPE_IN_CATEGORY_START",
-    FIND_RECIPE_IN_CATEGORY_SUCCESS = "FIND_RECIPE_IN_CATEGORY_SUCCESS",
+    FIND_RECIPE_IN_CATEGORY_SUCCESS ="FIND_RECIPE_IN_CATEGORY_SUCCESS",
     FIND_RECIPE_IN_CATEGORY_FAILURE = "FIND_RECIPE_IN_CATEGORY_FAILURE"
 
 const URL = "http://localhost:6500/api";
@@ -31,9 +30,10 @@ export const getCategory = () => dispatch =>{
     axios
         .get(`${URL}/category`)
             .then(resp=>{
+                console.log("********",resp)
                 dispatch({
                     type: GET_CATEGORY_SUCCESS,
-                    paylaod: resp.data
+                    payload: resp.data
                 })
             })
             .catch(error=>{
@@ -65,7 +65,7 @@ export const createCategory = (newCategory) => dispatch =>{
 export const editCategory = (categoryName, updatedCategroy) => dispatch =>{
     dispatch({type: EDIT_CATEGORY_START})
     axios
-        .put(`${URL}/category/:name`,categoryName,updatedCategroy)
+        .put(`${URL}/category/${categoryName}`,updatedCategroy)
             .then(resp=>{
                 dispatch({
                     type: EDIT_CATEGORY_SUCCESS,
@@ -83,7 +83,7 @@ export const editCategory = (categoryName, updatedCategroy) => dispatch =>{
 export const findCategoryByID = (categoryID) => dispatch =>{
     dispatch({type:FIND_CATEGORY_BYID_START})
     axios
-        .get(`${URL}/category/:id`,categoryID)
+        .get(`${URL}/category/${categoryID}`)
             .then(resp=>{
                 dispatch({
                     type: FIND_CATEGORY_BYID_SUCCESS,
@@ -100,7 +100,7 @@ export const findCategoryByID = (categoryID) => dispatch =>{
 export const findCategoryByName = (categoryName) => dispatch =>{
     dispatch({type:FIND_CATEGORY_BYNAME_START})
     axios
-        .get(`${URL}/category/:name`,categoryName)
+        .get(`${URL}/category/${categoryName}`)
             .then(resp=>{
                 dispatch({
                     type: FIND_CATEGORY_BYNAME_SUCCESS,
@@ -117,7 +117,7 @@ export const findCategoryByName = (categoryName) => dispatch =>{
 export const findRecipesWithinCategory = (categoryName) => dispatch =>{
     dispatch({type: FIND_RECIPE_IN_CATEGORY_START})
     axios
-        .get(`${URL}/category/recipes/:name`,categoryName)
+        .get(`${URL}/category/recipes/${categoryName}`)
             .then(resp=>{
                 dispatch({
                     type: FIND_RECIPE_IN_CATEGORY_SUCCESS,
@@ -131,10 +131,10 @@ export const findRecipesWithinCategory = (categoryName) => dispatch =>{
                 })
             })
 }
-export const deleteCategory = (categoryID) => {
+export const deleteCategory = (categoryID) => dispatch => {
     dispatch({DELETE_CATEGORY_START})
     axios
-        .delete(`${URL}/:id`,categoryID)
+        .delete(`${URL}/${categoryID}`)
             .then(resp=>{
                 dispatch({
                     type: DELETE_CATEGORY_SUCCESS,

@@ -3,23 +3,26 @@ import axios from "axios"
 
 
 export const 
-    GET_RECIPE = "GET_RECIPE",
+    GET_RECIPE_START = "GET_RECIPE_START",
     GET_RECIPE_SUCCESS = "GET_RECIPE_SUCCESS",
     GET_RECIPE_FAILURE = "GET_RECIPE_FAILURE",
-    CREATE_RECIPE = "CREATE_RECIPE",
+    GET_RECIPE_BYID_START = "GET_RECIPE_BYID_START",
+    GET_RECIPE_BYID_SUCCESS = "GET_RECIPE_BYID_SUCCESS",
+    GET_RECIPE_BYID_FAILURE = "GET_RECIPE_BYID_FAILURE",
+    CREATE_RECIPE_START = "CREATE_RECIPE_START",
     CREATE_RECIPE_SUCCESS = "CREATE_RECIPE_SUCCESS",
     CREATE_RECIPE_FAILURE = "CREATE_RECIPE_FAILURE",
-    EDIT_RECIPE = "EDIT_RECIPE",
+    EDIT_RECIPE_START = "EDIT_RECIPE_START",
     EDIT_RECIPE_SUCCESS = "EDIT_RECIPE_SUCCESS",
     EDIT_RECIPE_FAILURE = "EDIT_RECIPE_FAILURE",
-    DELETE_RECIPE = "DELETE_RECIPE",
+    DELETE_RECIPE_START = "DELETE_RECIPE_START",
     DELETE_RECIPE_SUCCESS = "DELETE_RECIPE_SUCCESS",
     DELETE_RECIPE_FAILURE = "DELETE_RECIPE_FAILURE"
 
 const URL = "http://localhost:6500/api"
 
 export const getRecipes = () => dispatch =>{
-    dispatch({type: GET_RECIPE})
+    dispatch({type: GET_RECIPE_START})
     axios
         .get(`${URL}/recipes`)
             .then(res=>{
@@ -28,36 +31,36 @@ export const getRecipes = () => dispatch =>{
                     payload: res.data
                 })
             })
-            .catch(err=>{
+            .catch(error=>{
                 dispatch({
                     type: GET_RECIPE_FAILURE,
-                    payload: "ERROR: Failure to get recipes"
+                    payload: error
                 })
             })
 }
 export const createRecipe = (recipe) => dispatch =>{
-    dispatch({type:CREATE_RECIPE})
+    dispatch({type:CREATE_RECIPE_START})
     axios
         .post(`${URL}/recipes`,recipe)
-            .then(res=>{
+            .then(resp=>{
                 dispatch({
                     type: CREATE_RECIPE_SUCCESS,
-                    payload: recipe
+                    payload: resp.data
                 })
             })
-            .catch(err=>{
+            .catch(error=>{
                 dispatch({
                     type: CREATE_RECIPE_FAILURE,
-                    payload: "ERROR: Failure to create new recipe"
+                    payload: error
                 })
             })
 }
 
-export const editRecipe = (recipe) => dispatch=>{
-    dispatch({type:EDIT_RECIPE})
+export const editRecipe = (recipeID,updatedRecipe) => dispatch=>{
+    dispatch({type:EDIT_RECIPE_START})
     axios
-    .put(`${URL}/recipes/${recipe.id}`,recipe)
-        .then(res=>{
+    .put(`${URL}/recipes/${recipeID}`,updatedRecipe)
+        .then(resp=>{
             axios
             .get(`${URL}/recipes`)
                 .then(res=>{
@@ -67,18 +70,18 @@ export const editRecipe = (recipe) => dispatch=>{
                     })
                 })
         })
-        .catch(err=>{
+        .catch(error=>{
             dispatch({
                 type: EDIT_RECIPE_FAILURE,
-                payload: "ERROR: Failure to edit a recipe"
+                payload: error.data
             })
         })
 }
-export const deleteRecipe = (recipe) => dispatch =>{
-    dispatch({type: DELETE_RECIPE})
+export const deleteRecipe = (recipeID) => dispatch =>{
+    dispatch({type: DELETE_RECIPE_START})
     axios
-        .delete(`${URL}/recipes/${recipe.id}`,recipe)
-            .then(res=>{
+        .delete(`${URL}/recipes/${recipeID}`)
+            .then(resp=>{
                 axios
                 .get(`${URL}/recipes`)
                     .then(res=>{
@@ -88,10 +91,10 @@ export const deleteRecipe = (recipe) => dispatch =>{
                         })
                     })
             })
-            .catch(err=>{
+            .catch(error=>{
                 dispatch({
                     type: DELETE_RECIPE_FAILURE,
-                    payload: "ERROR: Failure to delete recipe"
+                    payload: error.data
                 })
             })
 }   

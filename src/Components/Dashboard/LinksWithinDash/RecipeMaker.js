@@ -9,6 +9,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import {createRecipe} from "../../../Actions/recipe"
+import {getCategory} from "../../../Actions/category"
 import "./linksWithinDash.css"
 
 //overriding default theme 
@@ -43,19 +44,22 @@ class RecipeMaker extends Component{
                 ingredients: "",
                 instructions: "",
                 username : ""
-            }
-
+            },
+            categories: []
         }
     }
+    //setting state when page loads
     componentDidMount(){
+        this.props.getCategory()
     this.setState({
         form: {
             ...this.state.form,
             username: this.props.username
-        }
+        },
+        categories: this.props.categories
     })
     }
-
+    // handles change within text boxes
     handleChange = (e) => {
         this.setState({ 
             form:{
@@ -64,13 +68,14 @@ class RecipeMaker extends Component{
             }
         })  
     }
+    //handles success message seen after creating new recipe
     successMessage = () =>{
         this.setState({
             ...this.state,
             successMessage: ""
         })
     }
-
+    // handles submitting a new recipe
     handleSubmit = (e) =>{
         e.preventDefault()
         if((this.state.form.name !== "") && (this.state.form.instructions !== "") && (this.state.form.ingredients !== "")){
@@ -92,12 +97,12 @@ class RecipeMaker extends Component{
     handleClick = (event) =>{
         console.log(event.currentTarget)
         this.setState({...this.state, anchorEl: event.currentTarget})
+        console.log(this.state)
     }
     //handle closing the dropdown menu
     handleClose = () =>{
         this.setState({...this.state,anchorEl:null})
     }
-
 
 render(){
     return(
@@ -162,10 +167,9 @@ render(){
                         />
                         <br/>                        
                         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
-                            Open Menu
+                            list of categories
                         </Button>
                         <Menu
-                            id="simple-menu"
                             anchorEl={this.state.anchorEl}
                             keepMounted
                             open={Boolean(this.state.anchorEl)}
@@ -191,9 +195,10 @@ render(){
 }
 
 const mapStateToProps = (state) =>({
-    username: state.username
+    username: state.username,
+    categories: state.categories
 })
 export default connect(
     mapStateToProps,
-    {createRecipe}
+    {createRecipe,getCategory}
 )(RecipeMaker);
