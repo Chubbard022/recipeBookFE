@@ -37,14 +37,12 @@ export const getRecipes = () => dispatch =>{
 }
 export const createRecipe = (recipe) => dispatch =>{
     dispatch({type:CREATE_RECIPE})
-    let newRecipe = {...recipe,favorited:false} 
-    console.log("****",newRecipe)
     axios
-        .post(`${URL}/recipes`,newRecipe)
+        .post(`${URL}/recipes`,recipe)
             .then(res=>{
                 dispatch({
                     type: CREATE_RECIPE_SUCCESS,
-                    payload: newRecipe
+                    payload: recipe
                 })
             })
             .catch(err=>{
