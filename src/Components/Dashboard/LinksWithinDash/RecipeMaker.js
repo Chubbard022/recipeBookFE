@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import {createRecipe} from "../../../Actions/recipe"
 import "./linksWithinDash.css"
@@ -12,45 +14,46 @@ import "./linksWithinDash.css"
 //overriding default theme 
 const theme = createMuiTheme({
     overrides: {
-      // Style sheet name ⚛
-      MuiInput: {
+    // Style sheet name ⚛
+    MuiInput: {
         // Name of the rule
         input: {
-          // Some CSS
-          height: "200",
-          fontSize: "3em",
-          padding:"10%",
-          fontSize: "25px"
+        // Some CSS
+        height: "200",
+        fontSize: "3em",
+        padding:"10%",
+        fontSize: "25px"
         },
-      },
-      MuiButton: {
-          text: {
-              border:"3px solid red"
-          }
-      }
     },
-  });
-
+    MuiButton: {
+        text: {
+            border:"3px solid red"
+        }
+    }
+    },
+});
 class RecipeMaker extends Component{
     constructor(props){
         super(props)
         this.state={
             successMessage: "",
+            anchorEl: null,
             form : {
                 name: "",
                 ingredients: "",
                 instructions: "",
                 username : ""
             }
+
         }
     }
     componentDidMount(){
-       this.setState({
-           form: {
-               ...this.state.form,
-               username: this.props.username
-           }
-       })
+    this.setState({
+        form: {
+            ...this.state.form,
+            username: this.props.username
+        }
+    })
     }
 
     handleChange = (e) => {
@@ -85,7 +88,15 @@ class RecipeMaker extends Component{
         }
         setTimeout(this.successMessage,3000)
     }
-
+    //handling click for dropdown menu
+    handleClick = (event) =>{
+        console.log(event.currentTarget)
+        this.setState({...this.state, anchorEl: event.currentTarget})
+    }
+    //handle closing the dropdown menu
+    handleClose = () =>{
+        this.setState({...this.state,anchorEl:null})
+    }
 
 
 render(){
@@ -139,6 +150,32 @@ render(){
                             margin="normal"
                             className="formInputField"
                         />
+                        <br/>                        
+                        <TextField
+                            id="standard-name"
+                            label="Category Name"
+                            name="ingredients"
+                            value={this.state.form.ingredients}
+                            onChange={this.handleChange}
+                            margin="normal"
+                            className="formInputField"
+                        />
+                        <br/>                        
+                        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
+                            Open Menu
+                        </Button>
+                        <Menu
+                            id="simple-menu"
+                            anchorEl={this.state.anchorEl}
+                            keepMounted
+                            open={Boolean(this.state.anchorEl)}
+                            onClose={this.handleClose}
+                        >
+                        {/* NEED TO CHANGE TO WHAT CATEGORIES ARE ALREADY MADE */}
+                            <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                            <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                            <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                        </Menu>
                     </form> 
                     <Button 
                         variant="contained" 
