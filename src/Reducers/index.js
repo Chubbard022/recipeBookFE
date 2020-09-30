@@ -1,58 +1,9 @@
-import {
-    LOGIN,
-    LOGIN_FAILURE,
-    LOGIN_SUCCESS,
-    REGISTER,
-    REGISTER_FAILURE,
-    REGISTER_SUCCESS,
-    LOGOUT,
-    LOGOUT_FAILURE,
-    LOGOUT_SUCCESS,
-} from "../Actions/index"
-import {
-    GET_RECIPE,
-    GET_RECIPE_SUCCESS,
-    GET_RECIPE_FAILURE,
-    CREATE_RECIPE,
-    CREATE_RECIPE_SUCCESS,
-    CREATE_RECIPE_FAILURE,
-    EDIT_RECIPE,
-    EDIT_RECIPE_SUCCESS,
-    EDIT_RECIPE_FAILURE,
-    DELETE_RECIPE,
-    DELETE_RECIPE_SUCCESS,
-    DELETE_RECIPE_FAILURE
-} from "../Actions/recipe"
-import {
-    GET_INSPIRATION,
-    GET_INSPIRATION_SUCCESS,
-    GET_INSPIRATION_FAILURE,
-    GET_INSPIRATION_DROPDOWN,
-    GET_INSPIRATION_DROPDOWN_SUCCESS,
-    GET_INSPIRATION_DROPDOWN_FAILURE
-} from "../Actions/inspiration"
-import {
-    GET_SOCIAL,
-    GET_SOCIAL_SUCCESS,
-    GET_SOCIAL_FAILURE,
-    GET_SOCIAL_RECIPE,
-    GET_SOCIAL_RECIPE_SUCCESS,
-    GET_SOCIAL_RECIPE_FAILURE
-} from "../Actions/social"
-import{
-    START_FAVORITE,
-    FAVORITE_SUCCESS,
-    FAVORITE_FAILURE,
-    GET_FAVORITE,
-    GET_FAVORITE_SUCCESS,
-    GET_FAVORITE_FAILURE,
-    DELETE_FAVORITE,
-    DELETE_FAVORITE_SUCCESS,
-    DELETE_FAVORITE_FAILURE,
-    CHECK_RECIPE,
-    CHECK_RECIPE_SUCCESS,
-    CHECK_RECIPE_FAILURE
-} from "../Actions/addFavorite"
+import* as login from "../Actions/index"
+import * as recipe from "../Actions/recipe"
+import * as inspiration from "../Actions/inspiration"
+import * as social from "../Actions/social"
+import * as favorited from "../Actions/addFavorite"
+import * as category from "../Actions/category";
 
 const initialState = {
     fetchingUserRecipes:false,
@@ -80,279 +31,204 @@ const initialState = {
     favorited:[],
     userList: [],
     recipes:[],
+    categories: []
 }
 
 export const reducer = (state=initialState,action) =>{
     switch(action.type){
-        case REGISTER:
+        case login.REGISTER_SUCCESS:
             return{
                 ...state,
                 error: null,
-                registering:true
-            }
-        case REGISTER_SUCCESS:
-            return{
-                ...state,
                 registering:false,
             }
-        case REGISTER_FAILURE:
+        case login.REGISTER_FAILURE:
             return{
                 ...state,
-                registering: false,
                 error:action.payload
             }
-        case LOGIN:
-            return {
-                ...state,
-                error: null,
-                loggedIn:true,
-            }
-        case LOGIN_SUCCESS:
+        case login.LOGIN_SUCCESS:
             return{
                 ...state,
-                loggedIn: false,
+                error: null,
                 message: action.payload.message,
                 username: action.payload.username,
                 token: action.payload.token
             }
-        case LOGIN_FAILURE:
-            return{
-                ...state,
-                loggedIn: false,
-                error: action.payload,
-            }
-        case LOGOUT:
-            return{
-                ...state,
-                error: null,
-                loggingOut: true,
-            }
-        case LOGOUT_FAILURE:
+        case login.LOGIN_FAILURE:
             return{
                 ...state,
                 error: action.payload,
-                loggingOut: false
             }
-        case LOGOUT_SUCCESS:
+        case login.LOGOUT_SUCCESS:
             return{
                 ...state,
                 loggingOut: false,
                 message: action.payload
             }
-        case GET_RECIPE :
+        case login.LOGOUT_FAILURE:
             return{
                 ...state,
-                gettingRecipe: true,
-                error: null,
-                recipes: action.payload
+                error: action.payload,
             }
-        case GET_RECIPE_FAILURE:
+        case recipe.GET_RECIPE_FAILURE:
             return{
                 ...state,
                 error: action.payload,
                 gettingRecipe: false
             }
-        case GET_RECIPE_SUCCESS:
-            return{
-                ...state,
-                gettingRecipe:false,
-                recipes: action.payload
-            }
-        case CREATE_RECIPE:
+        case recipe.GET_RECIPE_SUCCESS:
             return{
                 ...state,
                 error: null,
-                addingRecipe: true
+                recipes: action.payload
             }
-        case CREATE_RECIPE_FAILURE:
+        case recipe.CREATE_RECIPE_FAILURE:
             return {
                 ...state,
-                addingRecipe:false,
                 error: action.payload
             }
-        case CREATE_RECIPE_SUCCESS:
+            // HELPER FUNCTION NEEDED BELOW
+        case recipe.CREATE_RECIPE_SUCCESS:
                 state.recipes.push(action.payload)
             return {
                 ...state,
-                addingRecipe: false,
+                error: null,
             }
-        case EDIT_RECIPE:
+        case recipe.EDIT_RECIPE_FAILURE:
             return{
                 ...state,
-                editingRecipe: true,
-                error: null
-            }
-        case EDIT_RECIPE_FAILURE:
-            return{
-                ...state,
-                editingRecipe:false,
                 error: action.payload
             }
-        case EDIT_RECIPE_SUCCESS:
+        case recipe.EDIT_RECIPE_SUCCESS:
             return{
                 ...state,
-                editingRecipe:false,
+                error: null,
                 recipes: action.payload
             }
-        case DELETE_RECIPE:
+        case recipe.DELETE_RECIPE_FAILURE:
             return{
                 ...state,
-                error:null,
-                deletingRecipe: true
-            }
-        case DELETE_RECIPE_SUCCESS:
-            return{
-                ...state,
-                deletingRecipe:false,
-                recipes: action.payload
-            }
-        case DELETE_RECIPE_FAILURE:
-            return{
-                ...state,
-                deletingRecipe:false,
                 error:action.payload
             }
-        case GET_INSPIRATION:
+        case recipe.DELETE_RECIPE_SUCCESS:
             return{
                 ...state,
                 error: null,
-                gettingRecipe: true
+                recipes: action.payload
             }
-        case GET_INSPIRATION_SUCCESS:
+        case inspiration.GET_INSPIRATION_SUCCESS:
             return{
                 ...state,
+                error: null,
                 inspirationRecipes: action.payload,
-                gettingRecipe: false
             }
-        case GET_INSPIRATION_FAILURE:
+        case inspiration.GET_INSPIRATION_FAILURE:
             return{
                 ...state,
                 error: action.payload
             }
-        case GET_INSPIRATION_DROPDOWN:
+        case inspiration.GET_INSPIRATION_DROPDOWN_SUCCESS:
             return{
                 ...state,
                 error: null,
-                inspirationDropDown: true
-            }
-        case GET_INSPIRATION_DROPDOWN_SUCCESS:
-            return{
-                ...state,
                 inspirationRecipes: action.payload,
-                inspirationDropDown: false
             }
-        case GET_INSPIRATION_DROPDOWN_FAILURE:
+        case inspiration.GET_INSPIRATION_DROPDOWN_FAILURE:
             return{
                 ...state,
                 error:true
             }
-        case GET_SOCIAL:
+        case social.GET_SOCIAL_SUCCESS:
             return{
                 ...state,
-                error:null,
-                fetchingUsers:true
-            }
-        case GET_SOCIAL_SUCCESS:
-            return{
-                ...state,
+                error: null,
                 userList: action.payload,
-                fetchingUsers:false
             }
-        case GET_SOCIAL_FAILURE:
+        case social.GET_SOCIAL_FAILURE:
             return{
                 ...state,
                 error:true
             }
-        case GET_SOCIAL_RECIPE:
+        case social.GET_SOCIAL_RECIPE_SUCCESS:
             return{
                 ...state,
-                error:null,
-                fetchingUserRecipes: true
-            }
-        case GET_SOCIAL_RECIPE_SUCCESS:
-            return{
-                ...state,
-                fetchingUserRecipes:false,
+                error: null,
                 userListRecipe: action.payload
             }
-        case GET_SOCIAL_RECIPE_FAILURE:
+        case social.GET_SOCIAL_RECIPE_FAILURE:
             return{
                 ...state,
                 error: true
             }
-        case START_FAVORITE:
-            return{
-                ...state,
-                error: null,
-                favoritingRecipe:true
-            }
-        case FAVORITE_SUCCESS:
+        // NEED HELPER FUNCTION BELOW
+        case favorited.FAVORITE_SUCCESS:
             state.favorited.push(action.payload)
             return{
                 ...state,
+                error: null,
                 favoritingRecipe:false 
             }
-        case FAVORITE_FAILURE:
+        case favorited.FAVORITE_FAILURE:
             return{
                 ...state,
                 error: true
             }
-        case GET_FAVORITE:
+        // NEED HELPER FUNCTION BELOW
+        case favorited.GET_FAVORITE_SUCCESS:
             return{
                 ...state,
-                error:null,
-                favoritingRecipe:true
-            }
-        case GET_FAVORITE_SUCCESS:
-            console.log(action.payload)
-            return{
-                ...state,
-                favoritingRecipe:false,
+                error: null,
                 favorited: action.payload,
                 inspirationRecipes: state.inspirationRecipes.map(recipe=>{
-                    if(recipe.id == action.payload){
+                    if(recipe.id === action.payload){
                         recipe = action.payload;
                     }
                 })
             }
-        case GET_FAVORITE_FAILURE:
+        case favorited.GET_FAVORITE_FAILURE:
             return{
                 ...state,
                 error:true
             }
-        case DELETE_FAVORITE:
+        case favorited.DELETE_FAVORITE_SUCCESS:
             return{
                 ...state,
-                error:null,
-                deletingRecipe:true
-            }
-        case DELETE_FAVORITE_SUCCESS:
-            return{
-                ...state,
-                deletingRecipe:false,
+                error: null,
                 favorited:action.payload
             }
-        case DELETE_FAVORITE_FAILURE:
+        case favorited.DELETE_FAVORITE_FAILURE:
             return{
                 ...state,
                 error:true
             }
-        case CHECK_RECIPE:
+        case favorited.CHECK_RECIPE_SUCCESS:
             return{
                 ...state,
-                error:null,
-                checking: true
-            }
-        case CHECK_RECIPE_SUCCESS:
-            return{
-                ...state,
-                checking:false,
+                error: null,
                 found: action.payload
             }
-        case CHECK_RECIPE_FAILURE:
+        case favorited.CHECK_RECIPE_FAILURE:
             return{
                 ...state,
                 error:true
+            }
+        case category.GET_CATEGORY_SUCCESS:
+            return{
+                ...state,
+                error: null,
+                categories: action.payload
+            }
+        case category.GET_CATEGORY_FAILURE: 
+            return{
+                ...state,
+                error: action.payload
+            }
+        case category.CREATE_CATEGORY_SUCCESS:
+            return{
+                ...state,
+                error: null,
+                categories: action.payload
             }
         default:
             return state;
