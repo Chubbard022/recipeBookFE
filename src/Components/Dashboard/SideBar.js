@@ -14,9 +14,6 @@ function SideBar(props){
     return(
         <div className="sideBar">
             <div className="sideBarLinks">
-                <Link className="sideBarLink" to="/account"> 
-                    My Recipes
-                </Link>
                 <Link className="sideBarLink" to="/recipemaker">
                     Create Recipe
                 </Link>

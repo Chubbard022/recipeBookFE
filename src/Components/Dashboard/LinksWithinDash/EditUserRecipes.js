@@ -4,7 +4,7 @@ import "./linksWithinDash.css"
 
 
 
-function EditUserAccount({handleEditChange,handleFinishEdit,recipeToEdit,handleDeleteRecipe}){
+function EditUserRecipes({handleEditChange,handleFinishEdit,recipeToEdit,handleDeleteRecipe}){
     return(
             <div className="editRecipeDisplay">
                 <div className="editRecipeDisplayInput">
@@ -52,4 +52,4 @@ function EditUserAccount({handleEditChange,handleFinishEdit,recipeToEdit,handleD
     )
 }
 
-export default EditUserAccount
+export default EditUserRecipes;

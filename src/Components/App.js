@@ -8,7 +8,6 @@ import Dashboard from "./Dashboard/Dashboard"
 import Inspiration from "./Dashboard/LinksWithinDash/Inspiration"
 import RecipeMaker from "./Dashboard/LinksWithinDash/RecipeMaker"
 import Social from "./Dashboard/LinksWithinDash/Social"
-import UserAccount from "./Dashboard/LinksWithinDash/UserAccount"
 import Register from "./Login/Register"
 
 export default function App() {
@@ -21,7 +20,6 @@ export default function App() {
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/register" component={Register} />
 
-          <Route path="/account" component={UserAccount} />
           <Route path="/recipemaker" component={RecipeMaker} />
           <Route path="/inspiration" component={Inspiration} />
           <Route path="/social" component={Social} />
