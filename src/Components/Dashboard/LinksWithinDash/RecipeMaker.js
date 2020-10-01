@@ -1,38 +1,14 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 
-import {createRecipe} from "../../../Actions/recipe"
-import {getCategory} from "../../../Actions/category"
+import {createRecipe} from "../../../Actions/recipe";
+import {getCategory} from "../../../Actions/category";
+import FormRecipeMaker from "./FormRecipeMaker";
 import "./linksWithinDash.css"
 
-//overriding default theme 
-const theme = createMuiTheme({
-    overrides: {
-    // Style sheet name ⚛
-    MuiInput: {
-        // Name of the rule
-        input: {
-        // Some CSS
-        height: "200",
-        fontSize: "3em",
-        padding:"10%",
-        fontSize: "25px"
-        },
-    },
-    MuiButton: {
-        text: {
-            border:"3px solid red"
-        }
-    }
-    },
-});
 class RecipeMaker extends Component{
     constructor(props){
         super(props)
@@ -43,7 +19,8 @@ class RecipeMaker extends Component{
                 name: "",
                 ingredients: "",
                 instructions: "",
-                username : ""
+                username : "",
+                category: ""
             },
             categories: []
         }
@@ -88,20 +65,27 @@ class RecipeMaker extends Component{
                     name: "",
                     ingredients: "",
                     instructions: "",
+                    category: ""
                 }
             })  
         }
         setTimeout(this.successMessage,3000)
     }
     //handling click for dropdown menu
-    handleClick = (event) =>{
-        console.log(event.currentTarget)
+    handleOpenCategory = (event) =>{
         this.setState({...this.state, anchorEl: event.currentTarget})
-        console.log(this.state)
     }
     //handle closing the dropdown menu
-    handleClose = () =>{
-        this.setState({...this.state,anchorEl:null})
+    handleClose = (clickedCategory) =>{
+        
+        this.setState({
+                        ...this.state,
+                        anchorEl:null,
+                        form:{
+                            ...this.state.form,
+                            category: clickedCategory.name
+                        }
+                    })
     }
 
 render(){
@@ -123,72 +107,15 @@ render(){
                 ):
                 null
             }
-            <div className="recipeForm">
-                <ThemeProvider theme={theme}>
-                    <form>
-                        <TextField
-                            id="standard-name"
-                            label="recipe Name"
-                            name="name"
-                            value={this.state.form.name}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            className="formInputField"
-                        />
-                        <br/>
-                        <TextField
-                            id="standard-name"
-                            label="Ingredient List"
-                            name="ingredients"
-                            value={this.state.form.ingredients}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            className="formInputField"
-                        />
-                        <br/>
-                        <TextField
-                            id="standard-name"                        
-                            label="Instructions"
-                            name="instructions"
-                            value={this.state.form.instructions}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            className="formInputField"
-                        />
-                        <br/>                        
-                        <TextField
-                            id="standard-name"
-                            label="Category Name"
-                            name="ingredients"
-                            value={this.state.form.ingredients}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            className="formInputField"
-                        />
-                        <br/>                        
-                        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
-                            list of categories
-                        </Button>
-                        <Menu
-                            anchorEl={this.state.anchorEl}
-                            keepMounted
-                            open={Boolean(this.state.anchorEl)}
-                            onClose={this.handleClose}
-                        >
-                        {/* NEED TO CHANGE TO WHAT CATEGORIES ARE ALREADY MADE */}
-                            <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                            <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                            <MenuItem onClick={this.handleClose}>Logout</MenuItem>
-                        </Menu>
-                    </form> 
-                    <Button 
-                        variant="contained" 
-                        color="primary" 
-                        onClick={this.handleSubmit}
-                        style={{marginTop: "5%",fontSize:"16px"}}
-                    >Create Recipe</Button>
-                </ThemeProvider>
-            </div>
+            <FormRecipeMaker 
+                form={this.state.form}
+                handleChange={this.handleChange}
+                anchorEl={this.state.anchorEl}
+                handleClose={this.handleClose}
+                categories={this.state.categories}
+                handleOpenCategory={this.handleOpenCategory}
+                handleSubmit={this.handleSubmit}
+            />
         </div>
         )
     }
