@@ -79,13 +79,13 @@ class RecipeMaker extends Component{
     handleClose = (clickedCategory) =>{
         
         this.setState({
-                        ...this.state,
-                        anchorEl:null,
-                        form:{
-                            ...this.state.form,
-                            category: clickedCategory.name
-                        }
-                    })
+            ...this.state,
+            anchorEl:null,
+            form:{
+                ...this.state.form,
+                category: clickedCategory.name
+            }
+        })
     }
 
 render(){
