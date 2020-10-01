@@ -90,7 +90,6 @@ const FormRecipeMaker = (props) => {
                                     <MenuItem key={category.id} onClick={()=>props.handleClose(category)}>{category.name}</MenuItem>
                                 )
                             })}
-                        {/* NEED TO CHANGE TO WHAT CATEGORIES ARE ALREADY MADE */}
                         </Menu>
                     </form> 
                     <Button 
