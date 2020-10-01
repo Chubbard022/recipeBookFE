@@ -1,10 +1,10 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
-import Button from "@material-ui/core/Button"
 
 
 import {getRecipes,editRecipe,deleteRecipe} from "../../Actions/recipe";
 import SideBar from "./SideBar"
+import DisplayRecipes from "./DisplayRecipes";
 import DashHeader from "./DashHeader"
 import EditUserRecipes from "./LinksWithinDash/EditUserRecipes"
 import "../../styles.css"
@@ -74,31 +74,19 @@ class Dashboard extends Component {
     }
     
     render(){
+        console.log(this.props.recipes)
         return(
             <div className="dashboard">
                 <DashHeader redirect={this.redirect}/>
                     <div className="dashboardMain">
                         <SideBar />
                             <div>
-                                {this.props.recipes? 
-                                ( <div className={this.state.editing? "vanish" : null}>
-                                        {this.props.recipes.map((recipe,index)=>{
-                                        if(recipe.username === this.props.username){
-                                        return <div className="recipeListDisplay" key={index}>
-                                            <p>{recipe.name}</p>
-                                            <p>{recipe.ingredients}</p>
-                                            <p>{recipe.instructions}</p>
-
-                                            <Button 
-                                                onClick={()=>this.handleSelectEdit(recipe)}
-                                                variant="contained" 
-                                                color="primary" 
-                                                style={{fontSize: "8px",float:"right"}}
-                                                >Edit
-                                            </Button>
-                                        </div>
-                                    }})}
-                                </div>):null}
+                                <DisplayRecipes 
+                                recipes={this.props.recipes}
+                                editing={this.state.editing}
+                                username={this.props.username}
+                                handleSelectEdit={this.handleSelectEdit}
+                                />
 
                                 {this.state.editing?
                                     <EditUserRecipes 
