@@ -8,8 +8,8 @@ import {connect} from "react-redux"
 
 function SideBar(props){
     const handleLogout = () =>{
-        props.logout()
         props.location.push("/")
+        props.logout()
     }
     return(
         <div className="sideBar">
