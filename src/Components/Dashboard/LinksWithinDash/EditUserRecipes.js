@@ -33,7 +33,7 @@ function EditUserRecipes({handleEditChange,handleFinishEdit,recipeToEdit,handleD
                         name="instructions"
                         value={recipeToEdit.instructions}
                         onChange={handleEditChange}
-                        className="editRecipeInput editRecipeLastInput"
+                        className="editRecipeInput"
                     />
                 </div>
                 <div className="editRecipeButtons">

@@ -9,6 +9,7 @@ import DashHeader from "./DashHeader"
 import EditUserRecipes from "./LinksWithinDash/EditUserRecipes"
 import "../../styles.css"
 import "./LinksWithinDash/linksWithinDash.css"
+import "../../styles/css/styles.css"
 
 class Dashboard extends Component {
 

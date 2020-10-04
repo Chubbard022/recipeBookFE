@@ -4,3 +4,103 @@
   width: 80%;
   padding: 3%;
 }
+.dashboard {
+  border: 1px solid black;
+  height: 100rem;
+}
+.dashboard .dashboardMain {
+  display: flex;
+  justify-content: space-between;
+}
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.dashboardHeader .dashboardHeaderRight {
+  display: flex;
+  font-size: 25px;
+}
+.dashboardHeader .dashboardHeaderRight div:hover {
+  cursor: pointer;
+}
+.dashboardHeader .dashboardHeaderRight .searchBar {
+  border: 1px solid black;
+  font-size: 18px;
+  border-radius: 10px;
+  padding: 3%;
+}
+.dashboardHeader .dashboardContentLeft {
+  padding: 0.4%;
+  justify-content: space-around;
+  font-size: 25px;
+}
+.sideBar {
+  background-color: #3F3F3F;
+  padding: 1%;
+  height: 93.6rem;
+}
+.sideBar .sideBarLinks {
+  background-color: #3F3F3F;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sideBar .sideBarLinks:hover div {
+  cursor: pointer;
+}
+.sideBar .sideBarLink {
+  text-decoration: none;
+  background-color: #3F3F3F;
+  color: white;
+  font-size: 25px;
+}
+.recipeListDisplay {
+  border: 1px solid black;
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 3%;
+  border-radius: 3px;
+  box-shadow: 3px 3px 3px #a7a3a3;
+}
+/*EDIT AND DELETE RECIPE */
+.editRecipeDisplay {
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 8%;
+}
+.editRecipeDisplay .editRecipeDisplayInput {
+  width: 100%;
+  display: flex;
+  margin: 2% 0 3% 0;
+}
+.editRecipeDisplay .editRecipeDisplayInput p {
+  margin-left: 1%;
+  margin-right: 4%;
+}
+.editRecipeDisplay .editRecipeDisplayInput:first-child input {
+  margin-left: 2.5%;
+}
+.editRecipeDisplay .editRecipeDisplayInput .editRecipeInput {
+  border: 1px solid grey;
+  width: 60%;
+  font-size: 16px;
+}
+.editRecipeDisplay .editRecipeButtons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10%;
+  margin-bottom: 2%;
+  padding: 2%;
+}
+.vanish {
+  display: none;
+}
+#favoriteRecipe {
+  border: 1px solid green;
+  width: 50px;
+}

@@ -1,7 +1,120 @@
-
 .SocialUser{
     border:1px solid red;
     margin:2% auto;
     width: 80%;
     padding:3%;
+}
+
+//Dashboard styling
+.dashboard{
+    border: 1px solid black;
+    height: 100rem;
+    
+    .dashboardMain{
+        display:flex;
+        justify-content: space-between;
+    }
+}
+//header found within dashboard
+.dashboardHeader{
+    display: flex;
+    justify-content: space-between;
+
+    .dashboardHeaderRight{
+        display: flex;
+        font-size: 25px;
+
+        div:hover{
+            cursor: pointer;
+        }
+        .searchBar{
+            border:1px solid black;
+            font-size: 18px;
+            border-radius: 10px;
+            padding: 3%;
+        }
+    }
+    .dashboardContentLeft{
+        padding: 0.4%;
+        justify-content: space-around;
+        font-size: 25px;
+    }
+}
+// Sidebar styling
+.sideBar{
+    background-color: #3F3F3F;
+    padding: 1%;
+    height: 93.6rem;
+
+    .sideBarLinks{
+        background-color: #3F3F3F;
+        height: 95%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        &:hover div{
+            cursor: pointer
+        }
+    }
+    .sideBarLink{
+        text-decoration: none;
+        background-color: #3F3F3F;
+        color: white;
+        font-size: 25px;
+    }
+}
+//recipes display within dashboard
+.recipeListDisplay{
+    border:1px solid black;
+    width:30%;
+    margin: 0 auto;
+    margin-top: 3%;
+    border-radius: 3px;
+    box-shadow: 3px 3px 3px rgb(167, 163, 163)
+}
+
+/*EDIT AND DELETE RECIPE */
+.editRecipeDisplay{
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 8%;
+    .editRecipeDisplayInput{
+        width: 100%;
+        display: flex;
+        margin: 2% 0 3% 0;
+        p{
+            margin-left: 1%;
+            margin-right: 4%;
+        }
+        &:first-child input{
+            margin-left: 2.5%;
+        }
+        .editRecipeInput{
+            border: 1px solid grey;
+            width:60%;
+            font-size: 16px;
+        }
+    }
+    .editRecipeButtons{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10%;
+        margin-bottom: 2%;
+        padding:2%;
+    }
+}
+
+// toggling display 
+.vanish{
+    display: none
+}
+
+// Favorited Recipes 
+#favoriteRecipe{
+    border: 1px solid green;
+    width: 50px;
 }

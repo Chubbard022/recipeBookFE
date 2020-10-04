@@ -16,7 +16,6 @@ class Favorited extends Component{
     }
 
     handleFavoriting = (recipe) =>{
-        console.log("_________",recipe)
         let newFavoritedRecipe = {
             id: recipe.id,
             image: recipe.image,

@@ -62,14 +62,14 @@
   border-top-left-radius: 3%;
   border-top-right-radius: 3%;
 }
-.dashboard{
+/* .dashboard{
   border: 1px solid black;
   height: 100rem
 }
 .dashboardMain{
   display:flex;
   justify-content: space-between;
-}
+} */
 .dashboardLayer{
   padding: 3%;
   display: flex;
@@ -137,35 +137,35 @@
 
 /* SIDEBAR */
 
-.sideBarLinks{
+/* .sideBarLinks{
   height: 95%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-.sideBar{
+} */
+/* .sideBar{
   background-color: #3F3F3F;
   padding: 1%;
   height: 93.6rem;
-}
-.sideBarLinks{
+} */
+/* .sideBarLinks{
   background-color: #3F3F3F;
-}
-.sideBarLinks div:hover{
+} */
+/* .sideBarLinks div:hover{
   cursor: pointer;
-}
-.sideBarLink{
+} */
+/* .sideBarLink{
   text-decoration: none;
   background-color: #3F3F3F;
   color: white;
   font-size: 25px;
-}
+} */
 
-.dashboardHeader{
+/* .dashboardHeader{
   display: flex;
   justify-content: space-between;
-}
-.dashboardHeaderRight{
+} */
+/* .dashboardHeaderRight{
   display: flex;
   font-size: 25px;
 }
@@ -176,11 +176,11 @@
   padding: 0.4%;
   justify-content: space-around;
   font-size: 25px;
-}
-.searchBar{
+} */
+/* .searchBar{
   border:1px solid black;
   font-size: 18px;
   border-radius: 10px;
   padding: 3%;
-}
+} */
 
