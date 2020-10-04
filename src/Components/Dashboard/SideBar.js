@@ -1,8 +1,8 @@
 import React from "react"
-import { BrowserRouter as Router, Route,Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {logout} from "../../Actions/index"
 import {connect} from "react-redux"
-
+import "../../styles/css/styles.css" 
 
 
 

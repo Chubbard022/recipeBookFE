@@ -48,7 +48,7 @@
   }
 
 
-/*EDIT AND DELETE RECIPE */
+/* EDIT AND DELETE RECIPE
 .editRecipeDisplay{
     border: 1px solid black;
     display: flex;
@@ -56,38 +56,36 @@
     width: 50%;
     margin: 0 auto;
     margin-top: 8%;
-  }
+  } */
   
-  .editRecipeInput{
+  /* .editRecipeInput{
     border: 1px solid grey;
     width:60%;
     font-size: 16px;
   
-  }
-  .editRecipeDisplayInput{
+  } */
+  /* .editRecipeDisplayInput{
     width: 100%;
     display: flex;
     margin: 2% 0 3% 0
-  }
+  } */
   
-  .editRecipeDisplayInput p{
+  /* .editRecipeDisplayInput p{
     margin-left: 1%;
     margin-right: 4%;
-  }
-  .editRecipeButtons{
+  } */
+  /* .editRecipeButtons{
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin-top: 10%;
     margin-bottom: 2%;
     padding:2%;
-  }
-  .editRecipeDisplayInput:first-child input{
+  } */
+  /* .editRecipeDisplayInput:first-child input{
     margin-left: 2.5%;
-  }
-  .editRecipeInput.editRecipeLastInput{
-    margin-left: -0.5%;
-  }
+  } */
+
 
 
   /* RECIPE MAKER PAGE */
@@ -99,22 +97,22 @@
     border-radius: 3px;
     padding:3%;
   }
-  .recipeListDisplay{
+  /* .recipeListDisplay{
     border:1px solid black;
     width:30%;
     margin: 0 auto;
     margin-top: 3%;
     border-radius: 3px;
     box-shadow: 3px 3px 3px rgb(167, 163, 163)
-  }
+  } */
   .successfullyCreate{
     margin: 0 auto;
     width: 40%;
     margin-top: 2%;
   }
-  .vanish{
+  /* .vanish{
     display: none
-  }
+  } */
 
 
 
@@ -142,7 +140,7 @@
 
 /* Favoriting recipes */
 
-#favoriteRecipe{
+/* #favoriteRecipe{
   border:1px solid green;
   width:50px;
-}
+} */
