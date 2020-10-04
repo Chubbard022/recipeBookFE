@@ -120,11 +120,8 @@
 
 /* SOCIAL PAGE */
 
-.user{
-    border:1px solid red;
-    margin:2% auto;
-    width: 80%;
-    padding:3%;
+.SocialUser{
+
   }
   .userUsername:hover{
     cursor: pointer;

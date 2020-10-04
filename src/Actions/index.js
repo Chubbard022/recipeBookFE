@@ -17,7 +17,7 @@ export const register = creds => dispatch =>{
     dispatch({type: REGISTER})
 
     axios
-    .post(`${URL}/register`,creds)
+    .post(`${URL}/auth/register`,creds)
         .then(res=>{
             dispatch({
                 type: REGISTER_SUCCESS,
@@ -36,9 +36,9 @@ export const login = creds => dispatch =>{
     dispatch({type: LOGIN})
     
     return axios
-    .post(`${URL}/login`,creds)
+    .post(`${URL}/auth/login`,creds)
     .then(res=>{
-        localStorage.setItem("jwt", res.data.token)
+        localStorage.setItem("Authorization", res.data.token)
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data 
