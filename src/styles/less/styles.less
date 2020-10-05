@@ -1,8 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+//general styles
+*{
+    margin: 0 0 0 0;
+    box-sizing: border-box;
+}
+.App {
+    font-family: sans-serif;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+//social page
 .SocialUser{
     border:1px solid red;
     margin:2% auto;
     width: 80%;
     padding:3%;
+
+    .userUsername:hover{
+        cursor: pointer;
+    }
 }
 
 //Dashboard styling
@@ -108,6 +126,102 @@
     }
 }
 
+// Insperation recipes
+.inspoRecipeContainer{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    .inspoRecipe{
+        border: 1px solid lightgray;
+        width: 20%;
+        margin: 0.5%;
+        border-radius: 3px;
+        box-shadow: 3px 3px 3px rgb(167, 163, 163);
+        margin: 1%;  
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        p{
+            margin: 5%;
+        }
+        img{
+            width: 100%;
+        }
+
+        .inspoTitle{
+            font-family: 'Roboto', sans-serif;
+            font-size: 20px;
+            box-sizing: border-box;
+            white-space: nowrap;
+        
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .inspoTitleClicked{
+            font-family: 'Roboto', sans-serif;
+            font-size: 20px;
+        }
+        .InspoButton{
+            background-color: #F50257;
+            height: 40px;
+            width: 40px;
+            color: white;
+            border-radius: 50%;
+            border: 1px solid red;
+            margin: 0 auto;
+        }
+    }
+
+}
+
+//Landing page
+.landingPageName{
+    position: absolute;
+    width:100vw;
+    display: flex;
+    padding-left: 1%;
+    background-color: black;
+    opacity: 0.5;
+
+    .registerBox{
+        border: 1px solid black;
+            border-radius: 2%;
+            box-shadow: 3px 3px 3px rgb(167, 163, 163);
+            background-color: rgb(255, 255, 255);
+            margin: 0 auto;
+
+            .registerBoxText{
+                font-weight: 900;
+                padding-bottom: 20%;
+            }
+            .landingPageButtons{
+                display: flex;
+                justify-content: space-around;
+            }
+        }
+    }
+.landingPageImg{
+    width:100vw;
+}
+
+//Login Page
+.loginError{
+    border: 1px solid #F44335;
+    background-color:#F44335;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 50%;
+    color: white;
+    box-shadow: 3px 3px 3px #DBDBDB;
+    padding:1%;
+}
+.registerRedirect{
+    color:blue;
+    cursor: pointer;
+}
+  
+
 // toggling display 
 .vanish{
     display: none
@@ -117,4 +231,29 @@
 #favoriteRecipe{
     border: 1px solid green;
     width: 50px;
+}
+//Recipe maker 
+.successfullyCreate{
+    margin: 0 auto;
+    width: 40%;
+    margin-top: 2%;
+}
+.recipeForm{
+    width: 30%;
+    margin: 2% auto auto auto;
+    border: 1px solid black;
+    background-color: #F1F0F0;
+    border-radius: 3px;
+    padding:3%;
+}
+
+//individual user recipes
+
+.userRecipe{
+    border: 1px solid black;
+    width: 50%;
+    margin: 3% auto;
+    .userRecipeDescription{
+        margin: 3%;
+    }
 }
