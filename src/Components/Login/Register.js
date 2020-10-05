@@ -4,7 +4,7 @@ import {connect} from "react-redux"
 
 import {TextField,Form,PageTitle} from "../../CustomElements/Textfield"
 import {register} from "../../Actions/index"
-import "../../styles.css"
+import "../../styles/css/styles.css"
 
 
 class Register extends Component{

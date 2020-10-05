@@ -7,7 +7,7 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 import {createRecipe} from "../../../Actions/recipe";
 import {getCategory} from "../../../Actions/category";
 import FormRecipeMaker from "./FormRecipeMaker";
-import "./linksWithinDash.css"
+import "../../../styles/css/styles.css"
 
 class RecipeMaker extends Component{
     constructor(props){

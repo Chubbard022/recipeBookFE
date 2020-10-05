@@ -3,7 +3,7 @@ import {connect} from "react-redux"
 import Button from "@material-ui/core/Button"
 import {getInspiration,dropDownInspoRecipe} from "../../../Actions/inspiration"
 import {favoriteRecipe} from "../../../Actions/addFavorite"
-import "./linksWithinDash.css"
+import "../../../styles/css/styles.css"
 import Favorited from "./Favorited"
 
 class Inspiration extends Component{

@@ -2,7 +2,6 @@ import React, {Component} from "react"
 import Button from '@material-ui/core/Button';
 import {connect} from "react-redux"
 import Individual from "./Individual"
-import "./linksWithinDash.css"
 import "../../../styles/css/styles.css"
 
 import {getOtherUsers,getUserRecipes} from "../../../Actions/social"
