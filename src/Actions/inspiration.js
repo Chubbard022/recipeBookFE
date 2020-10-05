@@ -1,5 +1,5 @@
 import axios from "axios"
-import Inspiration from "../Components/Dashboard/LinksWithinDash/Inspiration";
+
 require('dotenv').config()
 
 export const 
@@ -46,6 +46,7 @@ export const getInspiration = () => dispatch =>{
                     favorited:false,
                     image: image,
                 }
+                console.log("____NEWRECIPE____",newRecipe);
                 axios
                 //Putting recipe into the backend for persistence
                     .post(`${URL}/inspiration/newrecipe`,newRecipe)
