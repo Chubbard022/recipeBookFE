@@ -3,8 +3,7 @@ import star from "../../../images/star.png"
 import {connect} from "react-redux"
 import {favoriteRecipe,removeFavorite} from "../../../Actions/addFavorite"
 import favorite from "../../../images/favorite.png"
-import "../LinksWithinDash/linksWithinDash.css"
-
+import "../../../styles/css/styles.css"
 
 
 class Favorited extends Component{
@@ -41,8 +40,6 @@ class Favorited extends Component{
         })
         console.log(false)
     }
-
-
     render(){
         // console.log(this.props.recipe)
         return(

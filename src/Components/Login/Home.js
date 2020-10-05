@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 
 import {TextField,Form,PageTitle} from "../../CustomElements/Textfield"
 import {login} from "../../Actions/index"
-import "../../styles.css"
+import "../../styles/css/styles.css"
 
 class Home extends Component{
 

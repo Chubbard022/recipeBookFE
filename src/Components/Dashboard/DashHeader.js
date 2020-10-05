@@ -1,5 +1,5 @@
 import React,{useState} from "react"
-import "../../styles.css"
+import "../../styles/css/styles.css"
 
 function DashHeader(props){
     const [searchFunction,setSearchFunction] = useState(false)

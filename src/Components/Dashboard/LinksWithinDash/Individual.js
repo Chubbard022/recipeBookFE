@@ -1,5 +1,5 @@
 import React from "react"
-import "./linksWithinDash.css"
+import "../../../styles/css/styles.css"
 
 
 function Individual(props){
