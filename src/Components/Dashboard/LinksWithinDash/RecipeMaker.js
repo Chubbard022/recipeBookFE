@@ -20,7 +20,8 @@ class RecipeMaker extends Component{
                 ingredients: "",
                 instructions: "",
                 username : "",
-                category: ""
+                favorited: false,
+                categories_id: null
             },
             categories: []
         }
@@ -56,6 +57,7 @@ class RecipeMaker extends Component{
     handleSubmit = (e) =>{
         e.preventDefault()
         if((this.state.form.name !== "") && (this.state.form.instructions !== "") && (this.state.form.ingredients !== "")){
+            console.log("SENDING FORM_______",this.state.form)
             this.props.createRecipe(this.state.form)
             this.setState({ 
                 ...this.state,
@@ -65,7 +67,9 @@ class RecipeMaker extends Component{
                     name: "",
                     ingredients: "",
                     instructions: "",
-                    category: ""
+                    username : "",
+                    favorited: false,
+                    categories_id: null
                 }
             })  
         }

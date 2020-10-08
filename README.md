@@ -7,6 +7,12 @@
 * The frontend connects to the backend of --> https://github.com/Chubbard022/chubbard022-recipeBookBE
 
 
+* __Start FE__
+    1. yarn
+    2. yarn start
+    3. less-watch-compiler src/styles/less src/styles/css
+
+
 
 
 * __Things that need to be worked on__
