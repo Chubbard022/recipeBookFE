@@ -43,12 +43,14 @@ export const createRecipe = (recipe) => dispatch =>{
     axios
         .post(`${URL}/recipes`,recipe)
             .then(resp=>{
+                console.log("_______",recipe)
                 dispatch({
                     type: CREATE_RECIPE_SUCCESS,
                     payload: resp.data
                 })
             })
             .catch(error=>{
+                console.log("_______",recipe)
                 dispatch({
                     type: CREATE_RECIPE_FAILURE,
                     payload: error

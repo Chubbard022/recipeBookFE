@@ -25,13 +25,17 @@ const initialState = {
     message: null,
     error: null,
     token: null,
-    username: "",
+    username: localStorage.getItem("Username"),
     inspirationRecipes: [],
     userListRecipe:[],
     favorited:[],
     userList: [],
     recipes:[],
     categories: []
+}
+
+const addToUserAccount = (event) =>{
+    console.log(event)
 }
 
 export const reducer = (state=initialState,action) =>{
@@ -88,12 +92,12 @@ export const reducer = (state=initialState,action) =>{
                 ...state,
                 error: action.payload
             }
-            // HELPER FUNCTION NEEDED BELOW
         case recipe.CREATE_RECIPE_SUCCESS:
-                state.recipes.push(action.payload)
+            state.recipes.push(action.payload)
             return {
                 ...state,
                 error: null,
+                //recipes: [...state.recipes, action.payload]
             }
         case recipe.EDIT_RECIPE_FAILURE:
             return{
@@ -163,11 +167,13 @@ export const reducer = (state=initialState,action) =>{
             }
         // NEED HELPER FUNCTION BELOW
         case favorited.FAVORITE_SUCCESS:
-            state.favorited.push(action.payload)
+            //state.favorited.push(action.payload)
+            addToUserAccount(action.payload)
             return{
                 ...state,
                 error: null,
-                favoritingRecipe:false 
+                favoritingRecipe:false,
+                favorited: [...state.favorited,action.payload]
             }
         case favorited.FAVORITE_FAILURE:
             return{

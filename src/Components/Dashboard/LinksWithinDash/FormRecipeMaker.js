@@ -33,7 +33,7 @@ const theme = createMuiTheme({
 const FormRecipeMaker = (props) => {
     return(
         <React.Fragment>
-                        <div className="recipeForm">
+            <div className="recipeForm">
                 <ThemeProvider theme={theme}>
                     <form>
                         <TextField
@@ -69,8 +69,8 @@ const FormRecipeMaker = (props) => {
                         <TextField
                             id="standard-name"
                             label="Category Name"
-                            name="ingredients"
-                            value={props.form.category}
+                            name="categories_id"
+                            value={props.form.categories_id}
                             onChange={props.handleChange}
                             margin="normal"
                             className="formInputField"
