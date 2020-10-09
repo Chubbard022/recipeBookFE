@@ -73,7 +73,6 @@ class Dashboard extends Component {
     }
     
     render(){
-        console.log(this.props.recipes)
         return(
             <div className="dashboard">
                 <DashHeader redirect={this.redirect}/>

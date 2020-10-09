@@ -5,6 +5,17 @@ import * as social from "../Actions/social"
 import * as favorited from "../Actions/addFavorite"
 import * as category from "../Actions/category";
 
+
+// users: {
+//    "name": [
+//     name: localStorage.getItem("Username"),
+//     recipes: [{},{}],
+//     favorited: [{},{}]
+//  ]
+// }
+
+
+
 const initialState = {
     fetchingUserRecipes:false,
     inspirationDropDown:false,
@@ -24,18 +35,53 @@ const initialState = {
     errorStatusCode: null,
     message: null,
     error: null,
-    token: null,
     username: localStorage.getItem("Username"),
     inspirationRecipes: [],
     userListRecipe:[],
     favorited:[],
     userList: [],
     recipes:[],
-    categories: []
+    categories: [],
+    users: {}
 }
+    
+    // users: {
+    //     test1: {
+    //         name: "test1",
+    //         recipes: [{tesswga}],
+    //         favorited: {powgmarpo}
+    //     }
+    // }
 
-const addToUserAccount = (event) =>{
-    console.log(event)
+const addToUserAccount = (payload,action) =>{
+    console.log("______________HELLO")
+    console.log("______________",payload,action)
+    console.log(initialState)
+    let userState = initialState.users;
+    switch(action){
+        case "getUsers":
+            console.log(action)
+            for(const name in payload){
+                let username = payload[name].username
+                userState[`${username}`] = {}
+            }
+            return userState;
+            break;
+        case "getUserRecipes":
+            return(
+                
+                console.log("HER33E")
+            )
+            break;
+        case "getUserFavorited":
+            return(
+                console.log("HERE2")
+            )
+            break;
+        default:
+            break;
+    }
+
 }
 
 export const reducer = (state=initialState,action) =>{
@@ -56,8 +102,6 @@ export const reducer = (state=initialState,action) =>{
                 ...state,
                 error: null,
                 message: action.payload.message,
-                username: action.payload.username,
-                token: action.payload.token
             }
         case login.LOGIN_FAILURE:
             return{
@@ -93,11 +137,10 @@ export const reducer = (state=initialState,action) =>{
                 error: action.payload
             }
         case recipe.CREATE_RECIPE_SUCCESS:
-            state.recipes.push(action.payload)
             return {
                 ...state,
                 error: null,
-                //recipes: [...state.recipes, action.payload]
+                recipes: [...state.recipes, action.payload]
             }
         case recipe.EDIT_RECIPE_FAILURE:
             return{
@@ -144,6 +187,7 @@ export const reducer = (state=initialState,action) =>{
                 error:true
             }
         case social.GET_SOCIAL_SUCCESS:
+        addToUserAccount(action.payload,"getUsers")
             return{
                 ...state,
                 error: null,
@@ -155,6 +199,7 @@ export const reducer = (state=initialState,action) =>{
                 error:true
             }
         case social.GET_SOCIAL_RECIPE_SUCCESS:
+        addToUserAccount(action.payload,"getUserRecipes")
             return{
                 ...state,
                 error: null,
@@ -165,10 +210,10 @@ export const reducer = (state=initialState,action) =>{
                 ...state,
                 error: true
             }
-        // NEED HELPER FUNCTION BELOW
+       // NEED HELPER FUNCTION BELOW
         case favorited.FAVORITE_SUCCESS:
             //state.favorited.push(action.payload)
-            addToUserAccount(action.payload)
+            addToUserAccount(action.payload,"getUserFavorited")
             return{
                 ...state,
                 error: null,
