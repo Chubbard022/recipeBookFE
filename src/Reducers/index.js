@@ -304,13 +304,12 @@ export const reducer = (state=initialState,action) =>{
                 favoritingRecipe:true
             }
         case GET_FAVORITE_SUCCESS:
-            console.log(action.payload)
             return{
                 ...state,
                 favoritingRecipe:false,
                 favorited: action.payload,
                 inspirationRecipes: state.inspirationRecipes.map(recipe=>{
-                    if(recipe.id == action.payload){
+                    if(recipe.id == action.payload.id){
                         recipe = action.payload;
                     }
                 })
