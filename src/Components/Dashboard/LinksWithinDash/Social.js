@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import Button from '@material-ui/core/Button';
 import {connect} from "react-redux"
 import Individual from "./Individual"
-import "./linksWithinDash.css"
+import "../../../styles/css/styles.css"
 
 import {getOtherUsers,getUserRecipes} from "../../../Actions/social"
 
@@ -11,17 +11,12 @@ class Social extends Component{
     constructor(props){
         super(props)
         this.state={
-            userList: [],
             clickedUser : false,
         }
     }
 
     componentDidMount(){
         this.props.getOtherUsers()
-        this.setState({
-            ...this.state,
-            userList: this.props.userList
-        })
     }
     handleRedirectUserPage = (e) =>{
         let selectedUser = e.currentTarget.textContent
@@ -31,28 +26,34 @@ class Social extends Component{
             clickedUser: true
         })
     }
-  
+    handleRedirectSocialPage = () => {
+        this.setState({...this.state,clickedUser:false})
+    }
 
     render(){
         return(
             <div>
-                <Button 
-                    onClick={()=>this.props.history.push("/dashboard")}
-                    variant="contained" 
-                    color="primary" 
-                >Back To Dashboard</Button>
+                <diiv className={ this.state.clickedUser ? "vanish":null}>
+                    <Button 
+                        onClick={()=>this.props.history.push("/dashboard")}
+                        variant="contained" 
+                        color="primary" 
+                    >Back To Dashboard</Button>
+                </diiv>
                 <div className={ this.state.clickedUser ? "vanish" : null}>
                     {this.props.userList.map((user,index)=>{
-                        let userName= user.username;
                         return(
-                            <div className="user" key={index} onClick={ this.handleRedirectUserPage }>
-                                    <p className="userUsername">{userName}</p>
+                            <div className="SocialUser" key={index} onClick={ this.handleRedirectUserPage }>
+                                    <p className="userUsername">{user.username}</p>
                             </div>
                         )
                     })}
                 </div>
                 <div className={ this.state.clickedUser ? null: "vanish"}>
-                    <Individual userListRecipe={this.props.userListRecipe}/>
+                    <Individual 
+                        userListRecipe={this.props.userListRecipe}
+                        handleRedirectSocialPage={this.handleRedirectSocialPage}
+                        />
                 </div>
             </div>
         )

@@ -1,10 +1,9 @@
 import React from "react"
 import Button from "@material-ui/core/Button"
-import "./linksWithinDash.css"
 
 
 
-function EditUserAccount({handleEditChange,handleFinishEdit,recipeToEdit,handleDeleteRecipe}){
+function EditUserRecipes({handleEditChange,handleFinishEdit,recipeToEdit,handleDeleteRecipe}){
     return(
             <div className="editRecipeDisplay">
                 <div className="editRecipeDisplayInput">
@@ -33,7 +32,7 @@ function EditUserAccount({handleEditChange,handleFinishEdit,recipeToEdit,handleD
                         name="instructions"
                         value={recipeToEdit.instructions}
                         onChange={handleEditChange}
-                        className="editRecipeInput editRecipeLastInput"
+                        className="editRecipeInput"
                     />
                 </div>
                 <div className="editRecipeButtons">
@@ -52,4 +51,4 @@ function EditUserAccount({handleEditChange,handleFinishEdit,recipeToEdit,handleD
     )
 }
 
-export default EditUserAccount
+export default EditUserRecipes;

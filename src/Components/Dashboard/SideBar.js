@@ -1,22 +1,19 @@
 import React from "react"
-import { BrowserRouter as Router, Route,Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {logout} from "../../Actions/index"
 import {connect} from "react-redux"
-
+import "../../styles/css/styles.css" 
 
 
 
 function SideBar(props){
     const handleLogout = () =>{
-        props.logout()
         props.location.push("/")
+        props.logout()
     }
     return(
         <div className="sideBar">
             <div className="sideBarLinks">
-                <Link className="sideBarLink" to="/account"> 
-                    My Recipes
-                </Link>
                 <Link className="sideBarLink" to="/recipemaker">
                     Create Recipe
                 </Link>

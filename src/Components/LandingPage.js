@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button"
 import * as image from "../images/edgar-castrejon-bG5rhvRH0JM-unsplash.jpg"
 import {register} from "../Actions/index"
 import {connect} from "react-redux"
-import "../styles.css"
+import "../styles/css/styles.css"
 
 
 
@@ -39,7 +39,7 @@ class LandingPage extends Component {
     render(){
         return(
             <div>
-                <div className="landingPageTopBanner">
+                <div>
                     <div>
                         <Typography className="landingPageName" variant="h3" gutterBottom style={{color:"white"}}>
                             RecipEase

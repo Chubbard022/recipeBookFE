@@ -1,58 +1,43 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
-import {createRecipe} from "../../../Actions/recipe"
-import "./linksWithinDash.css"
-
-//overriding default theme 
-const theme = createMuiTheme({
-    overrides: {
-      // Style sheet name ⚛
-      MuiInput: {
-        // Name of the rule
-        input: {
-          // Some CSS
-          height: "200",
-          fontSize: "3em",
-          padding:"10%",
-          fontSize: "25px"
-        },
-      },
-      MuiButton: {
-          text: {
-              border:"3px solid red"
-          }
-      }
-    },
-  });
+import {createRecipe} from "../../../Actions/recipe";
+import {getCategory} from "../../../Actions/category";
+import FormRecipeMaker from "./FormRecipeMaker";
+import "../../../styles/css/styles.css"
 
 class RecipeMaker extends Component{
     constructor(props){
         super(props)
         this.state={
             successMessage: "",
+            anchorEl: null,
             form : {
                 name: "",
                 ingredients: "",
                 instructions: "",
-                username : ""
-            }
+                username : "",
+                favorited: false,
+                categories_id: null
+            },
+            categories: []
         }
     }
+    //setting state when page loads
     componentDidMount(){
-       this.setState({
-           form: {
-               ...this.state.form,
-               username: this.props.username
-           }
-       })
+        this.props.getCategory()
+    this.setState({
+        form: {
+            ...this.state.form,
+            username: this.props.username
+        },
+        categories: this.props.categories
+    })
     }
-
+    // handles change within text boxes
     handleChange = (e) => {
         this.setState({ 
             form:{
@@ -61,16 +46,18 @@ class RecipeMaker extends Component{
             }
         })  
     }
+    //handles success message seen after creating new recipe
     successMessage = () =>{
         this.setState({
             ...this.state,
             successMessage: ""
         })
     }
-
+    // handles submitting a new recipe
     handleSubmit = (e) =>{
         e.preventDefault()
         if((this.state.form.name !== "") && (this.state.form.instructions !== "") && (this.state.form.ingredients !== "")){
+            console.log("SENDING FORM_______",this.state.form)
             this.props.createRecipe(this.state.form)
             this.setState({ 
                 ...this.state,
@@ -80,13 +67,30 @@ class RecipeMaker extends Component{
                     name: "",
                     ingredients: "",
                     instructions: "",
+                    username : "",
+                    favorited: false,
+                    categories_id: null
                 }
             })  
         }
         setTimeout(this.successMessage,3000)
     }
-
-
+    //handling click for dropdown menu
+    handleOpenCategory = (event) =>{
+        this.setState({...this.state, anchorEl: event.currentTarget})
+    }
+    //handle closing the dropdown menu
+    handleClose = (clickedCategory) =>{
+        
+        this.setState({
+            ...this.state,
+            anchorEl:null,
+            form:{
+                ...this.state.form,
+                category: clickedCategory.name
+            }
+        })
+    }
 
 render(){
     return(
@@ -107,56 +111,25 @@ render(){
                 ):
                 null
             }
-            <div className="recipeForm">
-                <ThemeProvider theme={theme}>
-                    <form>
-                        <TextField
-                            id="standard-name"
-                            label="recipe Name"
-                            name="name"
-                            value={this.state.form.name}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            className="formInputField"
-                        />
-                        <br/>
-                        <TextField
-                            id="standard-name"
-                            label="Ingredient List"
-                            name="ingredients"
-                            value={this.state.form.ingredients}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            className="formInputField"
-                        />
-                        <br/>
-                        <TextField
-                            id="standard-name"                        
-                            label="Instructions"
-                            name="instructions"
-                            value={this.state.form.instructions}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            className="formInputField"
-                        />
-                    </form> 
-                    <Button 
-                        variant="contained" 
-                        color="primary" 
-                        onClick={this.handleSubmit}
-                        style={{marginTop: "5%",fontSize:"16px"}}
-                    >Create Recipe</Button>
-                </ThemeProvider>
-            </div>
+            <FormRecipeMaker 
+                form={this.state.form}
+                handleChange={this.handleChange}
+                anchorEl={this.state.anchorEl}
+                handleClose={this.handleClose}
+                categories={this.state.categories}
+                handleOpenCategory={this.handleOpenCategory}
+                handleSubmit={this.handleSubmit}
+            />
         </div>
         )
     }
 }
 
 const mapStateToProps = (state) =>({
-    username: state.username
+    username: state.username,
+    categories: state.categories
 })
 export default connect(
     mapStateToProps,
-    {createRecipe}
+    {createRecipe,getCategory}
 )(RecipeMaker);
